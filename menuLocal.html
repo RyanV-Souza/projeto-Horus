@@ -1,0 +1,187 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+
+  <link rel="stylesheet" href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap"rel="stylesheet"/>
+
+
+
+</head>
+
+<body >
+  <div class="quadro">
+      <div class="topo">
+          <h4>CAMPO DE ESTÁGIO</h4>
+      </div>
+      <div class="centro">
+          <div class="row">
+              <div class="col-md-2">
+                  <button type="submit" class="cadastrarLocal btnCadastro">CADASTRAR</button>
+              </div>
+              <div class="col-md-9">
+                 <div class="form-group">
+                    <select name="" id="" class="select opcaoLocal">
+                        <option value="">Nome</option>
+                        <option value="">Sigla</option>
+                    </select>
+                    <input type="search" name="" id="" class="inputPesquisa pesquisaComponente " placeholder="Digite aqui...">
+                 </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-11">
+                  <div class="table-responsive-md">
+                      <table class="table">
+
+                          <thead>
+                              <tr>
+                                  <th>Status</th>
+                                  <th>Nome</th>
+                                  <th>Sigla</th>
+                                  <th colspan="2">Editar dados</th>
+                              </tr>
+                          </thead>
+
+                          <tbody>
+                              <tr>
+                                <td><label class="switch">
+                                    <input type="checkbox">
+                                      <span class="slider round"></span>
+                                </label></td>
+                                  <td>Hospital Regional de Itanhaém</td>
+                                  <td>HRI</td>
+                                  <td><span > <img src="icon/writing (1).png" alt="Editar" class= "icon2"></span></td>
+                                  <td><span ></span></td>
+                              </tr>
+
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+
+
+      </div>
+  </div>
+
+
+  <div class="fundo"></div>
+
+
+  <nav class="sidebar">
+    <ul class="side-nav">
+      <li class="logo">
+        <a href="#" class="side-link">
+          <span class="link-text logo-text">Perfil</span>
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            data-prefix="fad"
+            data-icon="angle-double-right"
+            role="img"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512"
+            class="svg-inline--fa fa-angle-double-right fa-w-14 fa-5x"
+          >
+            <g class="fa-group">
+              <path
+                fill="currentColor"
+                d="M224 273L88.37 409a23.78 23.78 0 0 1-33.8 0L32 386.36a23.94 23.94 0 0 1 0-33.89l96.13-96.37L32 159.73a23.94 23.94 0 0 1 0-33.89l22.44-22.79a23.78 23.78 0 0 1 33.8 0L223.88 239a23.94 23.94 0 0 1 .1 34z"
+                class="fa-secondary"
+              ></path>
+              <path
+                fill="currentColor"
+                d="M415.89 273L280.34 409a23.77 23.77 0 0 1-33.79 0L224 386.26a23.94 23.94 0 0 1 0-33.89L320.11 256l-96-96.47a23.94 23.94 0 0 1 0-33.89l22.52-22.59a23.77 23.77 0 0 1 33.79 0L416 239a24 24 0 0 1-.11 34z"
+                class="fa-primary"
+              ></path>
+            </g>
+          </svg>
+        </a>
+      </li>
+
+      <li class="side-item">
+        <a href="menuUsuario.html" class="side-link">
+
+        <img  src='media/ICON USER.png' class="icon" >   <span class="link-text" >Usuario</span>
+        </a>
+      </li>
+
+      <li class="side-item">
+        <a href="menuModulo.html" class="side-link">
+        <img  src='media/grup.png' class="icon" > <span class="link-text" >Módulos</span>
+        </a>
+      </li>
+      <li class="side-item">
+        <a href="menuComponente.html" class="side-link">
+        <img  src='media/materia.png' class="icon" > <span class="link-text" >Componentes</span>
+        </a>
+      </li>
+
+      <li class="side-item">
+        <a href="menuLocal.html" class="side-link">
+        <img  src='media/local.png' class="icon" > <span class="link-text" >Locais</span>
+        </a>
+      </li>
+
+
+
+
+      <li class="side-item" id="themeButton">
+        <a href="#" class="side-link">
+          <img  src='media/sair.png' class="icon" > <span class="link-text" >Sair</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!--Modal Cadastro-->
+  <div class="modal fade" id="modalCadastroLocal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <label for="">Nome</label>
+                          <input type="text" class="cadastrarNmLocal form-control" placeholder="Ex: Hospital Regional">
+                      </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-md-12">
+                          <label for="">Endereço</label>
+                          <input type="text" class="cadastrarEnderecoLocal form-control" placeholder="Ex: R. Pavão, 222 - Praia Grande - SP">
+                      </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-md-12">
+                          <label for="">Sigla</label>
+                          <input type="text" class="cadastrarEnderecoLocal form-control" placeholder="Ex: HR">
+
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btnCadastro btnCadastrarUsuario">CADASTRAR CAMPO</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/principal.js"></script>
+
+</body>
