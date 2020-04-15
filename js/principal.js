@@ -29,8 +29,12 @@ $(document).on("mouseover", ".sidebar", function(){
 
   $(document).on("click", ".cadastrarComponente", function(){
     $("#modalCadastroComponente").modal('show');
-});
+  });
 
-$(document).on("click", ".cadastrarLocal", function(){
-  $("#modalCadastroLocal").modal('show');
-});
+  $(document).on("click", ".cadastrarLocal", function(){
+    $("#modalCadastroLocal").modal('show');
+  });
+
+  $(document).on("click", ".cadastrarModulo", function(){
+    $("#modalCadastroModulo").modal('show');
+  });

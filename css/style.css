@@ -68,8 +68,9 @@ body::-webkit-scrollbar-thumb {
   background-color: white;
   border-radius: 0px 0px 10px 10px;
   height: 90%;
-  padding-top: 5vh;
-  padding-left: 8vh;
+  padding-top: 3vh;
+  padding-left: 5vh;
+  padding-right: 5vh;
   overflow:auto;
   overflow-x: hidden;
 }
@@ -152,7 +153,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .fa-primary,
-.fa-secondary {#36c298
+.fa-secondary {
   transition: var(--transition-speed);
 }
 
@@ -443,4 +444,33 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+/* Componentes - Módulo*/
+.quadroModulo{
+  text-align: center;
+  display: inline-block;
+  width: 25vh;
+  height: 22vh;
+  background: #B5B5B5;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.14);
+  border-radius: 18px;
+  color: whitesmoke;
+  cursor: pointer;
+  margin-left: 1vh;
+  margin-top: 1vh;
+  padding-top: 0;
+}
+
+.quadroModulo img{
+  width: 55%;
+}
+
+.numeroModulo{
+  padding-top: 6vh;
+  display: inline-block;
+  font-weight: bold;
+}
+.siglaModulo{
+  display: inline-block;
 }
