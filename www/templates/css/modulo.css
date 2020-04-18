@@ -1,0 +1,62 @@
+.blocoDocente{
+    position: static;
+    width: 54%;
+    height: 50vh;
+    display: inline-block;
+    text-align: center;
+    border-bottom: 1px whitesmoke solid;
+    padding-right: 2vh;
+}
+
+.blocoAluno{
+    text-align: center;
+    padding-left: 3vh;
+    position: static;
+    float: right;
+    width: 45%;
+    height: 100%;
+    border-left: 1px solid whitesmoke;
+}
+
+.blocoBotoes{
+    position: static;
+    height: 25vh;
+    width: 55%;
+    display: block;
+}
+
+.blocoBotoes button{
+    display: inline-block;
+    width: 49%;
+    margin-top: 3vh;
+}
+
+.blocoTabelaDocente{
+    overflow: auto;
+    overflow-x: hidden;
+    background: white;
+    height: 80%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.blocoTabelaAluno{
+    overflow: auto;
+    overflow-x: hidden;
+    height: 80%;
+    width: 90%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+ td{
+    border-bottom: 1px solid #dadada;
+}
+.btnEstilo{
+    width: 50%;
+    margin-top: 2vh;
+}
+
+table{
+    border: 0;
+}

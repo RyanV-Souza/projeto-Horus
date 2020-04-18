@@ -1,0 +1,64 @@
+* {
+  margin: 0;
+    font-family: myFirstFont;
+}
+body{
+  background-image: url('../imagem/teste3.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position:
+
+}
+.box {
+  width: 30%;
+  border-radius: 20px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 55px 55px 85px rgba(106, 106, 106, 0.25);
+  background: #fff;
+  background-image: url('../imagem/curve.svg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: bottom;
+}
+h1 {
+  font-size: calc(20px + 2vh);
+  margin-left: 10%;
+}
+h2 {
+  font-size: 27px;
+  margin-left: 44%;
+  margin-top: 39.5%;
+  opacity: 0.5;
+}
+
+.input-form {
+  max-width: 80%;
+}
+#entrar{
+  margin-right:10%;
+}
+
+#registro{
+  margin-left: 10%;
+}
+
+#senha{
+  margin-left: 10%;
+}
+.btn {
+  display: block;
+  margin: 0 auto;
+}
+p{
+  text-align: center;
+  margin-top: 60px;
+}
+
+@font-face {
+  font-family: myFirstFont;
+  src: url("../fonts/ProductSans.ttf");
+}

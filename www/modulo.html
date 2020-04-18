@@ -1,0 +1,217 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+
+
+  <link rel="stylesheet" href="templates/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="templates/css/style.css" /> 
+  <link rel="stylesheet" href="templates/css/modulo.css" />
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap"rel="stylesheet"/>
+
+  
+  
+</head>
+
+<body >
+  <div class="quadro">
+      <div class="topo">
+          <h4>4 MÓDULO</h4>
+      </div>
+      <div class="centro">  
+          <div class="blocoDocente">
+            <div class="blocoTabelaDocente">
+              <table class="table">
+                <thead>
+                    <tr>
+                        <th colspan='3'>Corpo Docente</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Cargo</th>
+                        <th>Componente</th>
+                    </tr>
+                    <tr>
+                        <td>Ryan Vieira</td>
+                        <td>Professor</td>
+                        <td>Matéria</td>
+                    </tr>
+                    <tr>
+                      <td>Ryan Vieira</td>
+                      <td>Professor</td>
+                      <td>Matéria</td>
+                   </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <button type="submit" class="btnEstilo">Cadastrar Professor</button>
+          </div> 
+          
+          <div class="blocoAluno">
+                <div class="blocoTabelaAluno">
+                      <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Alunos</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Ryan Vieira Souza</td>
+                            </tr>
+                        </tbody>
+                      </table>
+                </div>
+
+                <button type="submit" class="btnEstilo">Cadastrar Aluno</button>
+
+          </div>
+
+          <div class="blocoBotoes">
+            <button type="submit" class="btnEstilo ">Cronograma</button>
+            <button type="submit" class="btnEstilo">Grupos de Estágio</button>
+            <button type="submit" class="btnEstilo">Alterar Informações</button>
+            <button type="submit" class="btnEstilo" style="background: #F45353;">Desativar</button>
+
+          </div>
+      </div>           
+      
+  </div>
+  
+
+  <div class="fundo"></div>
+
+
+  <nav class="sidebar">
+    <ul class="side-nav">
+      <li class="logo">
+        <a href="#" class="side-link">
+          <span class="link-text logo-text">Perfil</span>
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            data-prefix="fad"
+            data-icon="angle-double-right"
+            role="img"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512"
+            class="svg-inline--fa fa-angle-double-right fa-w-14 fa-5x"
+          >
+            <g class="fa-group">
+              <path
+                fill="currentColor"
+                d="M224 273L88.37 409a23.78 23.78 0 0 1-33.8 0L32 386.36a23.94 23.94 0 0 1 0-33.89l96.13-96.37L32 159.73a23.94 23.94 0 0 1 0-33.89l22.44-22.79a23.78 23.78 0 0 1 33.8 0L223.88 239a23.94 23.94 0 0 1 .1 34z"
+                class="fa-secondary"
+              ></path>
+              <path
+                fill="currentColor"
+                d="M415.89 273L280.34 409a23.77 23.77 0 0 1-33.79 0L224 386.26a23.94 23.94 0 0 1 0-33.89L320.11 256l-96-96.47a23.94 23.94 0 0 1 0-33.89l22.52-22.59a23.77 23.77 0 0 1 33.79 0L416 239a24 24 0 0 1-.11 34z"
+                class="fa-primary"
+              ></path>
+            </g>
+          </svg>
+        </a>
+      </li>
+
+      <li class="side-item">
+        <a href="menuUsuario.html" class="side-link">
+
+        <img  src='galeria/navbar/ICON USER.png' class="icon" >   <span class="link-text" >Usuario</span>
+        </a>
+      </li>
+
+      <li class="side-item">
+        <a href="menuModulo.html" class="side-link">
+        <img  src='galeria/navbar/grup.png' class="icon" > <span class="link-text" >Módulos</span>
+        </a>
+      </li>
+      <li class="side-item">
+        <a href="menuComponente.html" class="side-link">
+        <img  src='galeria/navbar/materia.png' class="icon" > <span class="link-text" >Componentes</span>
+        </a>
+      </li>
+
+      <li class="side-item">
+        <a href="menuLocal.html" class="side-link">
+        <img  src='galeria/navbar/local.png' class="icon" > <span class="link-text" >Locais</span>
+        </a>
+      </li>
+
+
+
+
+      <li class="side-item" id="themeButton">
+        <a href="#" class="side-link">
+          <img  src='galeria/navbar/sair.png' class="icon" > <span class="link-text" >Sair</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!--Modal Cadastro-->
+  <div class="modal fade" id="modalCadastroComponente" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="">Nome</label>
+                        <input type="text" class="cadastrarNmComponente form-control" placeholder="Ex: Tratamento de Gestantes">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="">Carga Horária</label>
+                        <input type="number" class="cadastrarCargaComponente form-control" placeholder="Ex: 120">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="">Local de Estágio</label>
+                        <select name="" id="" class=" cadastrarLocalComponente form-control">
+                            <option value="Hospital">Hospital Regional de Itanhaém</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="">Módulo</label>
+                        <select type="text" class="cadastrarModuloComponente form-control">
+                            <option value="2">2</option>
+                            <option value="4">4</option>
+
+
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btnEstilo btnCadastrarUsuario">CADASTRAR COMPONENTE</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+    <script src="templates/js/jquery-3.4.1.min.js"></script>
+    <script src="templates/js/bootstrap.min.js"></script>
+    <script src="templates/js/principal.js"></script>
+    <script src="templates/js/funcoesModulo.js"></script>
+
+
+</body>
