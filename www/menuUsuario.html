@@ -1,6 +1,7 @@
+<html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 
 
   <link rel="stylesheet" href="templates/css/bootstrap.min.css" rel="stylesheet">
@@ -47,19 +48,7 @@
                               </tr>
                           </thead>
 
-                          <tbody>
-
-                              <tr>
-                                  <td><label class="switch">
-                                      <input type="checkbox">
-                                        <span class="slider round"></span>
-                                  </label></td>
-                                  <td>Ryan Vieira Souza</td>
-                                  <td>Professor</td>
-                                  <td>0000</td>
-                                  <td><span > <img src="galeria/icon/writing (1).png" alt="" class= "icon2"></span></td>
-                                  <td></span></td>
-                              </tr>
+                          <tbody class="tbodyUsuario">
 
                               <tr>
                                 <td><label class="switch">
@@ -167,37 +156,37 @@
                   <div class="row">
                       <div class="col-md-12">
                           <label for="">Nome</label>
-                          <input type="text" class="cadastrarNmUsuario form-control" placeholder="Ex: Pedro Henrique Gomes">
+                          <input type="text" id="cadastrarNmUsuario" class=" form-control" placeholder="Ex: Pedro Henrique Gomes">
                       </div>
                   </div>
 
                   <div class="row">
                       <div class="col-md-12">
                           <label for="">Registro de Matrícula</label>
-                          <input type="text" class="cadastrarRmUsuario form-control" placeholder="Ex: 0000">
+                          <input type="text" id="cadastrarRmUsuario" class=" form-control" placeholder="Ex: 0000">
                       </div>
                   </div>
 
                   <div class="row">
                       <div class="col-md-12">
                           <label for="">E-Mail</label>
-                          <input type="text" class="cadastrarEmailUsuario form-control" placeholder="Ex: pedro@gmail.com.br">
+                          <input type="text" id="cadastrarEmailUsuario" class=" form-control" placeholder="Ex: pedro@gmail.com.br">
                       </div>
                   </div>
 
                   <div class="row">
                       <div class="col-md-12">
                           <label for="">CPF</label>
-                          <input type="text" class="cadastrarCPFUsuario form-control" placeholder="Ex: 000.000.000-00">
+                          <input type="text" id="cadastrarCPFUsuario" class=" form-control" placeholder="Ex: 000.000.000-00">
                       </div>
                   </div>
 
                   <div class="row">
                       <div class="col-md-12">
                           <label for="">Cargo</label>
-                          <select type="text" class="cadastrarCargoUsuario form-control">
-                              <option value="Coordenador">Coordenador</option>
-                              <option value="Professor">Professor</option>
+                          <select type="text" id="cadastrarCargoUsuario" class=" form-control">
+                              <option value="1">Coordenador</option>
+                              <option value="2">Professor</option>
 
 
                           </select>
@@ -207,7 +196,7 @@
                   <div class="row">
                       <div class="col-md-12">
                           <label for="">Telefone</label>
-                          <input type="tel" class="cadastrarTelefoneUsuario form-control" placeholder="Ex: (00) 0000-0000">
+                          <input type="tel" id="cadastrarTelefoneUsuario" class=" form-control" placeholder="Ex: (00) 0000-0000">
                       </div>
                   </div>
 
@@ -226,4 +215,41 @@
 <script src="templates/js/bootstrap.min.js"></script>
 <script src="templates/js/principal.js"></script>
 
+<script>
+  $(document).ready(function(){
+
+    $.ajax({
+      type: "post",
+      url: "templates/php/populaTabelaUsuario.php",
+      dataType:"json",
+      success: function(data){
+        var itemlista = "";
+
+        $.each(data.usuario, function(i, dados){
+            itemlista += `  <tr>
+                                <td><label class="switch">
+                                    <input type="checkbox">
+                                      <span class="slider round"></span>
+                                </label></td>
+                                  <td>${dados.nome}</td>
+                                  <td>${dados.cargo}</td>
+                                  <td>${dados.rm}</td>
+                                  <td><span > <img src="galeria/icon/writing (1).png" alt=""  class= "icon2"></span></td>
+                                  <td><span ></span></td>
+                              </tr>`
+        });
+
+        $(".tbodyUsuario").html(itemlista);
+
+      },
+    error: function(data, status, erro){
+      alert("Status: " + status + " Descrição: " + erro);
+      alert(data);
+    }
+  });
+
+});
+</script>
+
 </body>
+</html>

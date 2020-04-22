@@ -280,7 +280,7 @@ table thead{
   text-align: center;
   padding-left: 1vh;
   -webkit-appearance:none;
-  background: url("../icon/iconSelect.png") 95.5% 50% no-repeat;
+  background: url("../imagem/iconSelect.png") 95.5% 50% no-repeat;
 }
 
 .inputPesquisa{
@@ -367,7 +367,7 @@ border-radius: 40px;
 .modal-body select{
   border-radius: 10px;
   -webkit-appearance:none;
-  background: #f4f4f4 url("../icon/iconSelect.png") 95.5% 50% no-repeat;
+  background: #f4f4f4 url("../imagem/iconSelect.png") 95.5% 50% no-repeat;
   border: 0;
 
 }

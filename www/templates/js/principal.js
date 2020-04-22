@@ -27,6 +27,7 @@ $(document).on("mouseover", ".sidebar", function(){
       $("#modalCadastroUsuario").modal('show');
   });
 
+
   $(document).on("click", ".cadastrarComponente", function(){
     $("#modalCadastroComponente").modal('show');
   });
@@ -37,4 +38,33 @@ $(document).on("mouseover", ".sidebar", function(){
 
   $(document).on("click", ".cadastrarModulo", function(){
     $("#modalCadastroModulo").modal('show');
+  });
+
+  //BTN - Cadastro
+
+  $(document).on("click", ".btnCadastrarUsuario", function(){
+
+    var parametros = {
+      nome:$('#cadastrarNmUsuario').val(),
+      RM:$('#cadastrarRmUsuario').val(),
+      email:$('#cadastrarEmailUsuario').val(),
+      cpf:$("#cadastrarCPFUsuario").val(),
+      cargo:$("#cadastrarCargoUsuario").val(),
+      telefone:$("#cadastrarTelefoneUsuario").val()
+    }
+
+    
+    $.ajax({
+      type: "POST",
+      url: "php/cadastro.php",
+      data:parametros,
+      success: function(data){
+        alert('Cadastrado com sucesso');
+        document.location.reload(true);
+      },
+      error: function(request, status, erro){
+        alert('Problema: ' + status + ' Descrição: ' + erro);
+      }
+    });
+
   });
