@@ -22,7 +22,9 @@ $(document).on("mouseover", ".sidebar", function(){
   }); 
 
   
-
+  $(document).on("click", "#btnLogin", function(){
+    $(location).attr("href", "menuUsuario.html");
+  })
   $(document).on("click", ".cadastrarUsuario", function(){
       $("#modalCadastroUsuario").modal('show');
   });
