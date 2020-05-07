@@ -1,3 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+}
+
 @font-face {
   font-family: "ProductSans";
   src: url("../fonts/ProductSans.ttf");
@@ -17,6 +25,9 @@
 
 }
 
+section:not(.centro) {
+  padding: 80px 0;
+}
 
 body {
   color: black;
@@ -70,7 +81,7 @@ body::-webkit-scrollbar-thumb {
   height: 90%;
   padding-top: 3vh;
   padding-left: 5vh;
-  padding-right: 2.5vh;
+  padding-right: 1vh;
   padding-bottom: 3vh;
   overflow:auto;
   overflow-x: hidden;

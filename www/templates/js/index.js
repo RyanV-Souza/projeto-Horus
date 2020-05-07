@@ -35,6 +35,7 @@ $(document).on("mouseover", ".sidebar", function(){
 
   $(document).on("click", ".cadastrarComponente", function(){
     $("#modalCadastroComponente").modal('show');
+    acumularOptionLocal();
   });
 
   $(document).on("click", ".cadastrarLocal", function(){
@@ -45,8 +46,7 @@ $(document).on("mouseover", ".sidebar", function(){
     $("#modalCadastroModulo").modal('show');
   });
 
-  $(document).on("click", ".alterarUsuario", function(){
-  });
+  
 
   //BTN - Cadastro
 
@@ -77,6 +77,57 @@ $(document).on("mouseover", ".sidebar", function(){
 
   });
 
+  $(document).on("click", ".btnCadastrarLocal", function(){
+
+    var parametros = {
+      nome:$('.cadastrarNmLocal').val(),
+      endereco:$('.cadastrarEnderecoLocal').val(),
+      sigla:$('.cadastrarSiglaLocal').val()
+      
+    }
+
+    $.ajax({
+      type: "POST",
+      url: "./templates/php/local/cadastro.php",
+      data:parametros,
+      success: function(data){
+        alert('Cadastrado com sucesso');
+        document.location.reload(true);
+      },
+      error: function(request, status, erro){
+        alert('Problema: ' + status + ' Descrição: ' + erro);
+      }
+    });
+
+  });
+
+  $(document).on("click", ".btnCadastrarComponente", function(){
+
+    var parametros = {
+      nome:$('.cadastrarNmComponente').val(),
+      hora:$('.cadastrarCargaComponente').val(),
+      modulo:$('.cadastrarModuloComponente').val(),
+      local:$('.cadastrarLocalComponente').val()
+
+      
+    }
+
+    $.ajax({
+      type: "POST",
+      url: "./templates/php/componente/cadastro.php",
+      data:parametros,
+      success: function(data){
+        alert('Cadastrado com sucesso');
+        document.location.reload(true);
+      },
+      error: function(request, status, erro){
+        alert('Problema: ' + status + ' Descrição: ' + erro);
+      }
+    });
+
+  });
+  
+
   
   //BTN - Alterar
 
@@ -103,8 +154,32 @@ $(document).on("mouseover", ".sidebar", function(){
         }
       })
   });
+
+  $(document).on("click", ".btnAlterarLocal", function(){
+    var parametros = {
+      nome:$(".alterarNmLocal").val(),
+      endereco:$(".alterarEnderecoLocal").val(),
+      sigla:$(".alterarSiglaLocal").val(),
+      codigo:$(".alterarCodigoLocal").val(),
+      status:$("#alterarStatusLocal").val()
+    }
+
+
+    $.ajax({
+      type: "post",
+      url: "./templates/php/local/alterar.php",
+      data: parametros,
+      success: function(data){
+        alert("Alterado com sucesso!");
+        document.location.reload(true);
+      },
+      error: function(request, data, erro){
+
+      }
+    })
+});
   
-  //Function - Listar
+  //Function - Listar 
 
   const listarTodosUsuario = () =>{
     $.ajax({
@@ -120,7 +195,7 @@ $(document).on("mouseover", ".sidebar", function(){
                                   <td>${dados.nome}</td>
                                   <td>${dados.cargo}</td>
                                   <td>${dados.rm}</td>
-                                  <td><img src="galeria/icon/writing.png" class="icon2 alterarUsuario" onClick="buscarDadosUsuario(${dados.rm})"></td>
+                                  <td><img src="galeria/icon/writing.png" class="icon2" onClick="buscarDadosUsuario(${dados.rm})"></td>
                                   <td> <span> </span> </td>
                             </tr>`
         });
@@ -135,6 +210,56 @@ $(document).on("mouseover", ".sidebar", function(){
   });
   }
 
+  const listarTodosCampo = () =>{
+    $.ajax({
+      type: "post",
+      url: "./templates/php/local/populaTabelaLocal.php",
+      dataType:"json",
+      success: function(data){
+        var itemlista = "";
+
+        $.each(data.campo, function(i, dados){
+            itemlista += `  <tr>
+                                <td><span class="${dados.status}"> ${dados.status}</span></td>
+                                <td>${dados.nome}</td>
+                                <td>${dados.sigla}</td>
+                                <td><span > <img src="galeria/icon/writing.png" alt="Editar" class= "icon2" onClick="buscarDadosCampo(${dados.codigo})"></span></td>
+                                <td><span ></span></td>
+                            </tr>`
+        });
+
+        $(".tbodyCampo").html(itemlista);
+
+      },
+    error: function(data, status, erro){
+      alert("Status: " + status + " Descrição: " + erro);
+      alert(data);
+    }
+  });
+  }
+
+  const acumularOptionLocal = () =>{
+    $.ajax({
+      type: "post",
+      url: "./templates/php/local/populaTabelaLocal.php",
+      dataType:"json",
+      success: function(data){
+        var itemlista = "";
+        $.each(data.campo, function(i, dados){
+            itemlista += `<option value="${dados.codigo}"> ${dados.nome} </option> `
+        });
+
+        $(".cadastrarLocalComponente").html(itemlista);
+
+      },
+    error: function(data, status, erro){
+      alert("Status: " + status + " Descrição: " + erro);
+      alert(data);
+    }
+  });
+  }
+
+  //Function - Listar Um
   const buscarDadosUsuario = (RM) =>{
       var parametros ={
         RM:RM
@@ -160,5 +285,35 @@ $(document).on("mouseover", ".sidebar", function(){
           alert("Problema" + status + " Descrição " + erro);
         }
         
-      })
+      });
 }
+
+const buscarDadosCampo = (codigo) =>{
+  var parametros ={
+    codigo:codigo
+  }
+
+
+  $.ajax({
+    type: "post",
+    url: "./templates/php/local/listarUm.php",
+    data: parametros,
+    dataType:"JSON",
+    success: function(data){
+      $.each(data.campo, function(i, dados){
+          $(".alterarNmLocal").val(dados.nome);
+          $(".alterarEnderecoLocal").val(dados.endereco);
+          $(".alterarSiglaLocal").val(dados.sigla);
+          $(".alterarCodigoLocal").val(dados.codigo);
+          
+      });
+
+      $("#modalAlterarLocal").modal('show');
+    },
+    error: function(request, status, erro){
+      alert("Problema" + status + " Descrição " + erro);
+    }
+    
+  });
+}
+
