@@ -1,7 +1,7 @@
 <?php
     $link = mysqli_connect('localhost', 'root', 'usbw', 'horus');
 
-    $query = 'select * from tb_usuario';
+    $query = 'select tb_usuario.nm_usuario, tb_usuario.cd_rmUsuario, tb_nivelacesso.nm_nivel, tb_usuario.ds_statusUsuario from tb_usuario, tb_nivelacesso  where tb_usuario.FK_cd_acesso = tb_nivelacesso.cd_acesso ORDER BY tb_usuario.nm_usuario ASC;';
 
     $result = mysqli_query($link, $query);
 
@@ -14,8 +14,9 @@
     while($linha = mysqli_fetch_assoc($result)){
         $registros['usuario'][$i] = array(
             'nome' => $linha['nm_usuario'],
-            'cargo' => $linha['FK_cd_acesso'],
-            'rm' => $linha['cd_rmUsuario']
+            'cargo' => $linha['nm_nivel'],
+            'rm' => $linha['cd_rmUsuario'],
+            'status' =>$linha['ds_statusUsuario']
         );
 
         $i++;

@@ -63,14 +63,14 @@ body::-webkit-scrollbar-thumb {
 }
 
 .centro{
-  position: static;
+  position: absolute;
   width: 100%;
   background-color: white;
   border-radius: 0px 0px 10px 10px;
   height: 90%;
   padding-top: 3vh;
   padding-left: 5vh;
-  padding-right: 5vh;
+  padding-right: 2.5vh;
   padding-bottom: 3vh;
   overflow:auto;
   overflow-x: hidden;
@@ -273,7 +273,7 @@ table thead{
   width: 119px;
   height: 40px;
   background: #FFFFFF;
-  border: 3px solid #F1F1F1;
+  border: 2px solid #F1F1F1;
   border-radius: 10px 0px 0px 10px;
   font-size: 14px;
   font-weight: bold;
@@ -284,13 +284,12 @@ table thead{
 }
 
 .inputPesquisa{
+  position: absolute;
   height: 40px;
-  width: 81%;
+  width: 77%;
   background: #F1F1F1;
   border: 5px solid #F1F1F1;
   padding: 0;
-  margin-left: -1vh;
-
 }
 
 .btnEstilo{
@@ -306,6 +305,7 @@ table thead{
 
 
 /*Componentes Repetitivos - Status*/
+
 .desativado{
   width: 103px;
   height: 32px;

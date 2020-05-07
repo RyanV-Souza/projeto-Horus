@@ -51,15 +51,7 @@
                           <tbody class="tbodyUsuario">
 
                               <tr>
-                                <td><label class="switch">
-                                    <input type="checkbox">
-                                      <span class="slider round"></span>
-                                </label></td>
-                                  <td>Ryan Vieira Souza</td>
-                                  <td>Coordenador</td>
-                                  <td>0000</td>
-                                  <td><span > <img src="galeria/icon/writing (1).png" alt=""  class= "icon2"></span></td>
-                                  <td><span ></span></td>
+                                
                               </tr>
 
                           </tbody>
@@ -210,45 +202,91 @@
       </div>
     </div>
 
+     <!--Modal Cadastro-->
+  <div class="modal fade" id="modalAlterarUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="">Nome</label>
+                        <input type="text" id="alterarNmUsuario" class=" form-control" placeholder="Ex: Pedro Henrique Gomes">
+                    </div>
+                </div>
 
-<script src="templates/js/jquery-3.4.1.min.js"></script>
-<script src="templates/js/bootstrap.min.js"></script>
-<script src="templates/js/principal.js"></script>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="">Registro de Matrícula</label>
+                        <input type="text" id="alterarRmUsuario" class=" form-control" placeholder="Ex: 0000" disabled>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="">E-Mail</label>
+                        <input type="text" id="alterarEmailUsuario" class=" form-control" placeholder="Ex: pedro@gmail.com.br">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="">Status</label>
+                        <select type="text" id="alterarStatusUsuario" class=" form-control">
+                          <option value="Ativado">Ativado</option>
+                          <option value="Desativado">Desativado</option>
+                      </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="">Cargo</label>
+                        <select type="text" id="alterarCargoUsuario" class=" form-control">
+                            <option value="1">Coordenador</option>
+                            <option value="2">Professor</option>
+
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="">Telefone</label>
+                        <input type="tel" id="alterarTelefoneUsuario" class=" form-control" placeholder="Ex: (00) 0000-0000">
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btnEstilo btnAlterarUsuario">ALTERAR USUÁRIO</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<script src="./templates/js/jquery-3.4.1.min.js"></script>
+<script src="./templates/js/bootstrap.min.js"></script>
+<script src="./templates/js/index.js"></script>
 
 <script>
   $(document).ready(function(){
-
-    $.ajax({
-      type: "post",
-      url: "templates/php/populaTabelaUsuario.php",
-      dataType:"json",
-      success: function(data){
-        var itemlista = "";
-
-        $.each(data.usuario, function(i, dados){
-            itemlista += `  <tr>
-                                <td><label class="switch">
-                                    <input type="checkbox">
-                                      <span class="slider round"></span>
-                                </label></td>
-                                  <td>${dados.nome}</td>
-                                  <td>${dados.cargo}</td>
-                                  <td>${dados.rm}</td>
-                                  <td><span > <img src="galeria/icon/writing (1).png" alt=""  class= "icon2"></span></td>
-                                  <td><span ></span></td>
-                              </tr>`
-        });
-
-        $(".tbodyUsuario").html(itemlista);
-
-      },
-    error: function(data, status, erro){
-      alert("Status: " + status + " Descrição: " + erro);
-      alert(data);
-    }
-  });
+    
+  listarTodosUsuario();
+   
 
 });
+
+
 </script>
 
 </body>
