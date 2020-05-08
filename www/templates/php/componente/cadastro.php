@@ -4,8 +4,13 @@
 
     $nome = $_POST["nome"];
     $hora = $_POST["hora"];
-    $modulo = $_POST["local"];
+    $modulo = $_POST["modulo"];
+    $local = $_POST['local'];
     
 
-    mysqli_query($link, "insert into tb_campoestagio (nm_campoEstagio, sg_campoEstagio, ds_enderecoEstagio, ds_statusCampoEstagio) values ('$nome', '$sigla', '$endereco', 'Ativado')");
+    mysqli_query($link, "insert into tb_componentecurricular (nm_componente, ds_duracaoComponente, ds_statusComponente, ds_restricaoModulo) values ('$nome', $hora, 'Ativado', '$modulo')");
+
+    $id = mysqli_insert_id($link);
+
+    mysqli_query($link, "insert into tb_componentecampoestagiocronograma (FK_cd_componente, FK_cd_campoEstagio) values ($id, $local)");
 

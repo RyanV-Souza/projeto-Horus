@@ -126,6 +126,8 @@ $(document).on("mouseover", ".sidebar", function(){
     });
 
   });
+
+  
   
 
   
@@ -177,6 +179,31 @@ $(document).on("mouseover", ".sidebar", function(){
 
       }
     })
+});
+
+$(document).on("click", ".btnAlterarComponente", function(){
+  var parametros = {
+    nome:$(".alterarNmComponente").val(),
+    modulo:$(".alterarModuloComponente").val(),
+    hora:$(".alterarCargaComponente").val(),
+    codigo:$(".alterarCodigoComponente").val(),
+    status:$("#alterarStatusComponente").val(),
+    local:$(".alterarLocalComponente").val()
+  }
+
+
+  $.ajax({
+    type: "post",
+    url: "./templates/php/componente/alterar.php",
+    data: parametros,
+    success: function(data){
+      alert("Alterado com sucesso!");
+      document.location.reload(true);
+    },
+    error: function(request, data, erro){
+        alert('erro');
+    }
+  });
 });
   
   //Function - Listar 
@@ -238,6 +265,35 @@ $(document).on("mouseover", ".sidebar", function(){
   });
   }
 
+  const listarTodosComponente = () =>{
+    $.ajax({
+      type: "post",
+      url: "./templates/php/componente/populaTabelaComponente.php",
+      dataType:"json",
+      success: function(data){
+        var itemlista = "";
+        
+        $.each(data.componente, function(i, dados){
+            itemlista += `  <tr>
+                                <td><span class="${dados.status}"> ${dados.status}</span></td>
+                                <td>${dados.nome}</td>
+                                <td>${dados.carga}</td>
+                                <td>${dados.modulo}</td>
+                                <td><span > <img src="galeria/icon/writing.png" alt="Editar" class= "icon2" onClick="buscarDadosComponente(${dados.codigo})"></span></td>
+                                <td><span ></span></td>
+                            </tr>`
+        });
+
+        $(".tbodyComponente").html(itemlista);
+
+      },
+    error: function(data, status, erro){
+      alert("Status: " + status + " Descrição: " + erro);
+      alert(data);
+    }
+  });
+  }
+
   const acumularOptionLocal = () =>{
     $.ajax({
       type: "post",
@@ -249,7 +305,7 @@ $(document).on("mouseover", ".sidebar", function(){
             itemlista += `<option value="${dados.codigo}"> ${dados.nome} </option> `
         });
 
-        $(".cadastrarLocalComponente").html(itemlista);
+        $(".optionLocalComponente").html(itemlista);
 
       },
     error: function(data, status, erro){
@@ -317,3 +373,30 @@ const buscarDadosCampo = (codigo) =>{
   });
 }
 
+const buscarDadosComponente = (codigo) =>{
+  var parametros ={
+    codigo:codigo
+  }
+
+
+  $.ajax({
+    type: "post",
+    url: "./templates/php/componente/listarUm.php",
+    data: parametros,
+    dataType:"JSON",
+    success: function(data){
+      $.each(data.componente, function(i, dados){
+          $(".alterarNmComponente").val(dados.nome);
+          $(".alterarCargaComponente").val(dados.hora);
+          $(".alterarCodigoComponente").val(dados.codigo);
+          
+      });
+      acumularOptionLocal();
+      $("#modalAlterarComponente").modal('show');
+    },
+    error: function(request, status, erro){
+      alert("Problema" + status + " Descrição " + erro);
+    }
+    
+  });
+}

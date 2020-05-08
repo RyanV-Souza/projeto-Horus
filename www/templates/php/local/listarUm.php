@@ -18,7 +18,7 @@
             'sigla' =>$linha['sg_campoEstagio'],
             'codigo' =>$linha['cd_campoEstagio']
         );
-
+        
         $i++;
     };
 
