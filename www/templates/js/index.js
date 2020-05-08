@@ -127,6 +127,33 @@ $(document).on("mouseover", ".sidebar", function(){
 
   });
 
+  $(document).on("click", ".btnCadastrarModulo", function(){
+
+    var parametros = {
+      nome:$('.cadastrarNmComponente').val(),
+      dataInicial:$('.cadastrarDataInicialModulo').val(),
+      dataFinal:$('.cadastrarDataFinalModulo').val(),
+      sigla:$('.cadastrarSiglaModulo').val(),
+      numeroModulo:$(".cadastrarNumeroModulo").val()
+
+      
+    }
+
+    $.ajax({
+      type: "POST",
+      url: "./templates/php/modulo/cadastro.php",
+      data:parametros,
+      success: function(data){
+        alert('Cadastrado com sucesso');
+        document.location.reload(true);
+      },
+      error: function(request, status, erro){
+        alert('Problema: ' + status + ' Descrição: ' + erro);
+      }
+    });
+
+  });
+
   
   
 
@@ -293,6 +320,47 @@ $(document).on("click", ".btnAlterarComponente", function(){
     }
   });
   }
+
+  const listarTodosModulo = () =>{
+    $.ajax({
+      type: "post",
+      url: "./templates/php/modulo/populaQuadroModulo.php",
+      dataType:"json",
+      success: function(data){
+        var itemlista = "";
+        
+        $.each(data.modulo, function(i, dados){
+          if(dados.status == 'Ativado'){
+                  itemlista += ` <div class="quadroModulo moduloAtivo" style="background: #58D6AB" onClick="exibirModulo(${dados.codigo}">
+                                    <span class="numeroModulo">${dados.numeroModulo}°Módulo</span>
+                                    <span class="siglaModulo">${dados.sigla}</span>
+                                    <span class="anoModulo">2020</span>
+                                  </div> `
+          } else if(dados.status =='Desativado'){
+            itemlista += ` <div class="quadroModulo moduloAtivo" style="background: #FF6565" onClick="exibirModulo(${dados.codigo}">
+                                    <span class="numeroModulo">${dados.numeroModulo}°Módulo</span>
+                                    <span class="siglaModulo">${dados.sigla}</span>
+                                    <span class="anoModulo">2020</span>
+                                  </div> `
+          }
+
+            
+        });
+
+        $(".centro").html(`<div class="quadroModulo cadastrarModulo">
+                                <img src="galeria/icon/iconeCruz.png" alt="">
+                                <span class="tituloAdicionar">Adicionar Módulo</span>
+                          </div>  ` + itemlista);
+
+      },
+    error: function(data, status, erro){
+      alert("Status: " + status + " Descrição: " + erro);
+      alert(data);
+    }
+  });
+  }
+
+
 
   const acumularOptionLocal = () =>{
     $.ajax({

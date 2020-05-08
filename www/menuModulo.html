@@ -20,10 +20,7 @@
           <h4>MÓDULO</h4>
       </div>
       <div class="centro">  
-                  <div class="quadroModulo cadastrarModulo">
-                      <img src="galeria/icon/iconeCruz.png" alt="">
-                      <span class="tituloAdicionar">Adicionar Módulo</span>
-                </div>                
+                                
       </div>
 
               
@@ -136,6 +133,17 @@
                     </div>
                 </div>
 
+                <div class="row">
+                  <div class="col-md-12">
+                      <label for="">Módulo Correspondente</label>
+                      <select name="" id="" class="cadastrarNumeroModulo">
+                        <option value="2">2 Módulo</option>
+                        <option value="4">4 Módulo</option>
+
+                      </select>
+                  </div>
+              </div>
+
               </div>
           </div>
           <div class="modal-footer">
@@ -149,7 +157,12 @@
 <script src="templates/js/jquery-3.4.1.min.js"></script>
 <script src="templates/js/bootstrap.min.js"></script>
 <script src="templates/js/index.js"></script>
-<script src="templates/js/funcoesModulo.js"></script>
+
+<script>
+  $(document).ready(function(){
+    listarTodosModulo();
+  })
+</script>
 
 
 </body>
