@@ -19,7 +19,7 @@
 <body >
   <div class="quadro">
       <div class="topo">
-          <h4>4 MÓDULO</h4>
+          <h4></h4>
       </div>
       <div class="centro">  
           <div class="blocoDocente">
@@ -30,27 +30,18 @@
                         <th colspan='3'>Corpo Docente</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="tbodyProfessor">
                     <tr>
                         <th>Nome</th>
-                        <th>Cargo</th>
                         <th>Componente</th>
+                        <th>Local</th>
                     </tr>
-                    <tr>
-                        <td>Ryan Vieira</td>
-                        <td>Professor</td>
-                        <td>Matéria</td>
-                    </tr>
-                    <tr>
-                      <td>Ryan Vieira</td>
-                      <td>Professor</td>
-                      <td>Matéria</td>
-                   </tr>
+                    
                 </tbody>
               </table>
             </div>
 
-            <button type="submit" class="btnEstilo">Cadastrar Professor</button>
+            <button type="submit" class="btnEstilo cadastrarProfessor">Cadastrar Professor</button>
           </div> 
           
           <div class="blocoAluno">
@@ -62,22 +53,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Ryan Vieira Souza</td>
-                            </tr>
+                            
                         </tbody>
                       </table>
                 </div>
 
-                <button type="submit" class="btnEstilo">Cadastrar Aluno</button>
+                <button type="submit" class="btnEstilo cadastrarAluno">Cadastrar Aluno</button>
 
           </div>
 
           <div class="blocoBotoes">
-            <button type="submit" class="btnEstilo ">Cronograma</button>
-            <button type="submit" class="btnEstilo">Grupos de Estágio</button>
-            <button type="submit" class="btnEstilo">Alterar Informações</button>
-            <button type="submit" class="btnEstilo" style="background: #F45353;">Desativar</button>
+            <button type="submit" class="btnEstilo cadastrarCronograma">Cronograma</button>
+            <button type="submit" class="btnEstilo cadastrarGrupoEstagio">Grupos de Estágio</button>
+            <button type="submit" class="btnEstilo alterarModulo">Alterar Informações</button>
+            <button type="submit" class="btnEstilo desativarModulo" style="background: #F45353;">Desativar</button>
 
           </div>
       </div>           
@@ -154,8 +143,8 @@
     </ul>
   </nav>
 
-  <!--Modal Cadastro-->
-  <div class="modal fade" id="modalCadastroComponente" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+
+  <div class="modal fade" id="modalCadastroCorpoDocente" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -167,43 +156,77 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-12">
-                        <label for="">Nome</label>
-                        <input type="text" class="cadastrarNmComponente form-control" placeholder="Ex: Tratamento de Gestantes">
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <label for="">Carga Horária</label>
-                        <input type="number" class="cadastrarCargaComponente form-control" placeholder="Ex: 120">
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <label for="">Local de Estágio</label>
-                        <select name="" id="" class=" cadastrarLocalComponente form-control">
-                            <option value="Hospital">Hospital Regional de Itanhaém</option>
+                        <label for="">Professores</label>
+                        <select name="" id="" class="cadastrarProfessorDisponivel form-control">
                         </select>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-12">
-                        <label for="">Módulo</label>
-                        <select type="text" class="cadastrarModuloComponente form-control">
-                            <option value="2">2</option>
-                            <option value="4">4</option>
-
+                        <label for="">Componentes Curriculares</label>
+                        <select name="" id="" class="cadastrarComponenteDisponivel form-control" >
 
                         </select>
                     </div>
                 </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                      <label for="">Campo de Estágio</label>
+                      <input type="text" class="form-control cadastrarCampoDisponivel" disabled>
+                  </div>
+              </div>
+                
 
             </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btnEstilo btnCadastrarUsuario">CADASTRAR COMPONENTE</button>
+          <button type="button" class="btnEstilo btnCadastrarCorpoDocente" style="width: 100%">CADASTRAR PROFESSOR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalCadastroCorpoDocente" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="">Nome do Aluno:</label>
+                        <select name="" id="" class="cadastrarNmAluno form-control" placeholder="Ex: Ryan Vieira Souza">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="">RM</label>
+                        <select name="" id="" class="cadastrarRmAluno form-control" placeholder="Ex: 11111">
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                      <label for="">CPF</label>
+                      <input type="text" class="form-control cadastrarCPFAluno" placeholder="Ex: 000.000.000-00">
+                  </div>
+              </div>
+                
+
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btnEstilo btnCadastrarAluno" style="width: 100%">CADASTRAR ALUNO</button>
         </div>
       </div>
     </div>
@@ -214,8 +237,11 @@
     <script src="templates/js/jquery-3.4.1.min.js"></script>
     <script src="templates/js/bootstrap.min.js"></script>
     <script src="templates/js/index.js"></script>
-    <script src="templates/js/funcoesModulo.js"></script>
-
+    <script>
+        $(document).ready(function(){
+          exibirModulo();
+        });
+    </script>
 
 </body>
 </html>

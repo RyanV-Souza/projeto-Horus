@@ -9,4 +9,4 @@
     $codigo = $_POST['codigo'];
     $local = $_POST['local'];
 
-    mysqli_multi_query($link, "update tb_componentecurricular set nm_componente = '$nome', ds_duracaoComponente = '$hora', ds_statusComponente = '$status', ds_restricaoModulo = '$modulo' where cd_componente = $codigo; update  tb_componentecampoestagiocronograma set FK_cd_campoEstagio = $local where FK_cd_componente = $codigo");
+    mysqli_multi_query($link, "update tb_componentecurricular set nm_componente = '$nome', ds_duracaoComponente = '$hora', ds_statusComponente = '$status', ds_restricaoModulo = '$modulo' where cd_componente = $codigo; update  tb_componentecampoestagioprofessor set FK_cd_campoEstagio = $local where FK_cd_componente = $codigo");

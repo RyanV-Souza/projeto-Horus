@@ -46,10 +46,38 @@ $(document).on("mouseover", ".sidebar", function(){
     $("#modalCadastroModulo").modal('show');
   });
 
+  const cadastrarProfessor = (codigo) =>{
+    $("#modalCadastroCorpoDocente").modal('show');
+    populaModalOptionComponente();
+    populaModalOptionProfessor();
+    $('.btnCadastrarCorpoDocente').attr('onClick', `confirmarCadastroProfessor(${codigo})`);
+
+   }
+
   
 
   //BTN - Cadastro
+  
+  const confirmarCadastroProfessor = (codigo) =>{
+      var parametros = {
+        codigoModulo:codigo,
+        codigoProfessor:$(".cadastrarProfessorDisponivel").val()
+      }
 
+
+      $.ajax({
+          type: "POST",
+          url: "./templates/php/modulo/cadastrarCorpoDocente.php",
+          data:parametros,
+          success: function(data){
+              alert("Cadastrado com Sucesso!");
+              document.location.reload(true);
+          },
+          error: function(data){
+            alert("Erro");
+          }
+      })
+  }
   $(document).on("click", ".btnCadastrarUsuario", function(){
 
     var parametros = {
@@ -331,13 +359,13 @@ $(document).on("click", ".btnAlterarComponente", function(){
         
         $.each(data.modulo, function(i, dados){
           if(dados.status == 'Ativado'){
-                  itemlista += ` <div class="quadroModulo moduloAtivo" style="background: #58D6AB" onClick="exibirModulo(${dados.codigo}">
+                  itemlista += ` <div class="quadroModulo moduloAtivo" style="background: #58D6AB" onClick="enviarModulo(${dados.codigo})">
                                     <span class="numeroModulo">${dados.numeroModulo}°Módulo</span>
                                     <span class="siglaModulo">${dados.sigla}</span>
                                     <span class="anoModulo">2020</span>
                                   </div> `
           } else if(dados.status =='Desativado'){
-            itemlista += ` <div class="quadroModulo moduloAtivo" style="background: #FF6565" onClick="exibirModulo(${dados.codigo}">
+            itemlista += ` <div class="quadroModulo moduloAtivo" style="background: #FF6565" onClick="enviarModulo(${dados.codigo})">
                                     <span class="numeroModulo">${dados.numeroModulo}°Módulo</span>
                                     <span class="siglaModulo">${dados.sigla}</span>
                                     <span class="anoModulo">2020</span>
@@ -360,6 +388,27 @@ $(document).on("click", ".btnAlterarComponente", function(){
   });
   }
 
+  $(document).on("change", '.cadastrarComponenteDisponivel', function(){
+
+    var parametros = {
+      'codigo':$(this).val()
+    }
+    $.ajax({
+        type: "post",
+        url: "./templates/php/modulo/inserirCampoEstagio.php",
+        data: parametros,
+        dataType:"json",
+        success: function(data){
+          $.each(data.campo, function(i, dados){
+              $('.cadastrarCampoDisponivel').val(dados.nome);
+          });
+          
+        },
+        error: function(data){
+          alert("Erro");
+        }
+    });
+  })
 
 
   const acumularOptionLocal = () =>{
@@ -468,3 +517,123 @@ const buscarDadosComponente = (codigo) =>{
     
   });
 }
+
+
+ const enviarModulo = (codigo) =>{
+  var parametros = {
+    codigo:codigo
+  }
+
+
+
+  $.ajax({
+    type: "post",
+    url: "./templates/php/modulo/criarSession.php",
+    data: parametros,
+    success: function(data){
+      $(location).attr('href', 'modulo.html');
+    },
+    error: function(request, status, erro){
+      alert("Problema" + status + " Descrição " + erro);
+    }
+    
+  });
+
+ }
+
+ const exibirModulo = () =>{
+   
+   $.ajax({
+     type:"post",
+     url: "./templates/php/modulo/exibirModulo.php",
+     dataType: "JSON",
+     success: function(data){
+        $.each(data.modulo, function(i, dados){
+          $(".cadastrarProfessor").attr('onClick', `cadastrarProfessor(${dados.codigo})`);
+          $(".cadastrarAluno").attr('onClick', `cadastrarAluno(${dados.codigo})`);
+          $('h4').text(`${dados.numero} MÓDULO`);
+          exibirCorpoDocente(dados.codigo);
+        });
+     },
+     error: function(request, status, erro){
+       alert("Problema " + status + " Descrição " + erro);
+     }
+   })
+ }
+
+ const exibirCorpoDocente = (codigo) =>{
+    var parametros = {
+      codigoModulo:codigo
+    }
+
+
+    $.ajax({
+      type: "post",
+      url: "./templates/php/modulo/exibirProfessorModulo.php",
+      data: parametros,
+      dataType:"json",
+      success: function(data){
+          var itemlista = "";
+          $.each(data.modulo, function(i, dados){
+              itemlista+= `<tr> 
+                            <td> ${dados.nomeProfessor}</td> 
+                            <td>${dados.nomeComponente} </td> 
+                            <td>${dados.nomeCampo} </td> 
+              
+                            </tr>`
+          });
+
+          $(".tbodyProfessor").html(` <tr>
+                                          <th>Nome</th>
+                                          <th>Componente</th>
+                                          <th>Local</th>
+                                      </tr> ` + itemlista)
+      },
+      error: function(data){
+        alert("Erro")
+      }
+    })
+ }
+
+ const populaModalOptionComponente = () => {
+    $.ajax({
+      type:"post",
+      url: "./templates/php/componente/populaTabelaComponente.php",
+      dataType: "JSON",
+      success: function(data){
+        var itemlista = "";
+        $.each(data.componente, function(i, dados){
+            itemlista+= `<option value="${dados.codigo}"> ${dados.nome}</option>`
+
+        });
+
+        $(".cadastrarComponenteDisponivel").html(itemlista);
+      },
+      error: function(request, status, erro){
+        alert("Problema " + status + " Descrição " + erro);
+      }
+    })
+ }
+
+ const populaModalOptionProfessor = () => {
+  $.ajax({
+    type:"post",
+    url: "./templates/php/usuario/populaTabelaUsuario.php",
+    dataType: "JSON",
+    success: function(data){
+      var itemlista = "";
+      $.each(data.usuario, function(i, dados){
+          itemlista+= `<option value="${dados.rm}"> ${dados.nome}</option>`
+
+      });
+
+      $(".cadastrarProfessorDisponivel").html(itemlista);
+    },
+    error: function(request, status, erro){
+      alert("Problema " + status + " Descrição " + erro);
+    }
+  })
+}
+
+
+ 
