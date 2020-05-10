@@ -54,10 +54,37 @@ $(document).on("mouseover", ".sidebar", function(){
 
    }
 
+   cadastrarAluno = (codigo) =>{
+     $("#modalCadastroAluno").modal('show');
+     $(".btnCadastrarAluno").attr("onClick", `confirmarCadastroAluno(${codigo})`);
+   }
+
   
 
   //BTN - Cadastro
-  
+
+  const confirmarCadastroAluno = (codigo) =>{
+      var parametros = {
+        nome:$('.cadastrarNmAluno').val(),
+        rm:$('.cadastrarRmAluno').val(),
+        cpf:$('.cadastrarCPFAluno').val(),
+        codigoModulo:codigo
+      }
+
+
+      $.ajax({
+        type: "POST",
+        url: "./templates/php/aluno/cadastro.php",
+        data: parametros,
+        success: function(data){
+          alert('Cadastrado com Sucesso!');
+          document.location.reload(true);
+        },
+        error: function(data){
+          alert('Erro');
+        }
+      })
+  }
   const confirmarCadastroProfessor = (codigo) =>{
       var parametros = {
         codigoModulo:codigo,
@@ -551,8 +578,10 @@ const buscarDadosComponente = (codigo) =>{
         $.each(data.modulo, function(i, dados){
           $(".cadastrarProfessor").attr('onClick', `cadastrarProfessor(${dados.codigo})`);
           $(".cadastrarAluno").attr('onClick', `cadastrarAluno(${dados.codigo})`);
+          $(".cadastrarGrupoEstagio").attr("onClick", `cadastrarGrupo(${dados.codigo})`);
           $('h4').text(`${dados.numero} MÓDULO`);
           exibirCorpoDocente(dados.codigo);
+          exibirAlunos(dados.codigo);
         });
      },
      error: function(request, status, erro){
@@ -561,6 +590,32 @@ const buscarDadosComponente = (codigo) =>{
    })
  }
 
+ const exibirAlunos = (codigo) =>{
+   var parametros = {
+     codigoModulo:codigo
+   }
+
+   $.ajax({
+     type: "post",
+     url: "./templates/php/aluno/exibirAlunoModulo.php",
+     data: parametros,
+     dataType: "JSON",
+     success: function(data){
+       alert('oi');
+       var itemlista = "";
+       $.each(data.aluno, function(i, dados){
+            itemlista += `<tr>
+                              <td> ${dados.nome} </td>
+                          </tr>`
+       });
+
+       $('.tbodyAluno').html(itemlista);
+     },
+     error: function(data){
+       alert("Erro");
+     }
+   })
+ }
  const exibirCorpoDocente = (codigo) =>{
     var parametros = {
       codigoModulo:codigo
