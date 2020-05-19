@@ -7,6 +7,7 @@
 
 
   <link rel="stylesheet" href="templates/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="templates/css/grupo.css" /> 
   <link rel="stylesheet" href="templates/css/style.css" /> 
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap"rel="stylesheet"/>
 
@@ -17,12 +18,12 @@
 <body >
   <div class="quadro">
       <div class="topo">
-          <h4>MÓDULO</h4>
+          <h4>GRUPO DE ESTÁGIO</h4>
       </div>
       <div class="centro">  
                                 
       </div>
-
+      
               
 
               
@@ -100,7 +101,7 @@
   </nav>
 
   <!--Modal Cadastro-->
-  <div class="modal fade" id="modalCadastroModulo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal fade" id="modalCadastroGrupo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -112,8 +113,15 @@
               <div class="form-group">
                   <div class="row">
                       <div class="col-md-12">
-                          <label for="">Data Inicial</label>
-                          <input type="date" class="form-control cadastrarDataInicialModulo" placeholder="Ex: 01/01/2020">
+                          <label for="">Nome do Grupo</label>
+                          <input type="text" class="form-control cadastrarNmGrupo" placeholder="Ex: Grupo A">
+                      </div>
+                  </div>
+                  
+                  <div class="row">
+                      <div class="col-md-12">
+                          <label for="">Sigla do Grupo</label>
+                          <input type="text" class="form-control cadastrarSiglaGrupo" placeholder="Ex: GP-A">
                       </div>
                   </div>
 
@@ -121,33 +129,25 @@
 
                   <div class="row">
                       <div class="col-md-12">
-                          <label for="">Data Final</label>
-                          <input type="date" class="cadastrarDataFinalModulo form-control" placeholder="Ex: 09/09/2020">
+                          <label for="">Alunos </label>
+                          <div class="blocoAlunos">
+                            <div class="divisaoGrupoAluno">
+                              <input type="checkbox" name="" id=""> <label for="">Oi</label>
+                            </div>
+                            <div class="divisaoGrupoAluno">
+                              <input type="checkbox" name="" id=""> <label for="">Oi</label>
+                            </div>
+                          
+                          </div>
+
                       </div>
                   </div>
 
-                  <div class="row">
-                    <div class="col-md-12">
-                        <label for="">Sigla</label>
-                        <input type="text" class="cadastrarSiglaModulo form-control" placeholder="Ex: 4ENF2">
-                    </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-md-12">
-                      <label for="">Módulo Correspondente</label>
-                      <select name="" id="" class="cadastrarNumeroModulo form-control">
-                        <option value="2">2 Módulo</option>
-                        <option value="4">4 Módulo</option>
-
-                      </select>
-                  </div>
-              </div>
 
               </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btnEstilo btnCadastrarModulo">CADASTRAR MÓDULO</button>
+            <button type="button" class="btnEstilo btnCadastrarGrupo">CADASTRAR GRUPO</button>
           </div>
         </div>
       </div>
@@ -157,10 +157,9 @@
 <script src="templates/js/jquery-3.4.1.min.js"></script>
 <script src="templates/js/bootstrap.min.js"></script>
 <script src="templates/js/index.js"></script>
-
 <script>
   $(document).ready(function(){
-    listarTodosModulo();
+    listarTodosGrupo();    
   })
 </script>
 

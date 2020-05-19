@@ -54,15 +54,94 @@ $(document).on("mouseover", ".sidebar", function(){
 
    }
 
-   cadastrarAluno = (codigo) =>{
+   const cadastrarGrupo = (codigo) =>{
+     $("#modalCadastroGrupo").modal('show');
+     exibirAlunosDisponiveis(codigo);
+     $('.btnCadastrarGrupo').attr('onClick', `confirmarCadastroGrupo(${codigo})`);
+   }
+   const cadastrarAluno = (codigo) =>{
      $("#modalCadastroAluno").modal('show');
      $(".btnCadastrarAluno").attr("onClick", `confirmarCadastroAluno(${codigo})`);
+   }
+
+   const exibirAlunosDisponiveis = (codigo) =>{
+      var parametros = {
+        codigoModulo: codigo
+      }
+
+      $.ajax({
+        type:"post",
+        url:"./templates/php/grupo/exibirAlunoDisponivel.php",
+        data: parametros,
+        dataType:"JSON",
+        success: function(data){
+          var itemlista = "";
+
+          $.each(data.aluno, function(i, dados){
+              itemlista += `<div class="divisaoGrupoAluno">
+                              <input type="checkbox" name="" id="" value="${dados.codigo}"> <label for="">${dados.nome}</label>
+                            </div>`
+          });
+
+          $(".blocoAlunos").html(itemlista);
+        },
+        error: function(data){
+          alert("Erro;")
+        }
+      })
+   }
+   const exibirGrupos = (codigo) =>{
+      var parametros = {
+        codigoModulo:codigo
+      };
+
+      $.ajax({
+        type:"post",
+        url: "./templates/php/grupo/criarSession.php",
+        data:parametros,
+        success: function(data){
+            $(location).attr('href', 'grupoEstagio.html');
+        },
+        error: function(data){
+          alert("Erro");
+        }
+      })
+
+
    }
 
   
 
   //BTN - Cadastro
+  const confirmarCadastroGrupo = (codigo) =>{
+    var rmAlunos = [];
 
+    $("input:checked").each(function(){
+        rmAlunos.push($(this).val());
+    });
+
+    var parametros = {
+      codigoModulo:codigo,
+      rmAlunos:rmAlunos,
+      nomeGrupo:$(".cadastrarNmGrupo").val(),
+      siglaGrupo:$(".cadastrarSiglaGrupo").val()
+    }
+
+    $.ajax({
+        type:"post",
+        url:"./templates/php/grupo/cadastrarGrupo.php",
+        data:parametros,
+        success: function(data){
+            alert("Cadastrado com Sucesso");
+            document.location.reload(true);
+        },
+        error: function(data){
+            alert('Erro');
+        }
+        
+    });
+    
+  }
   const confirmarCadastroAluno = (codigo) =>{
       var parametros = {
         nome:$('.cadastrarNmAluno').val(),
@@ -415,6 +494,47 @@ $(document).on("click", ".btnAlterarComponente", function(){
   });
   }
 
+  const listarTodosGrupo = () =>{
+    
+    $.ajax({
+      type: "post",
+      url: "./templates/php/grupo/populaQuadroGrupo.php",
+      dataType:"json",
+      success: function(data){
+        var itemlista = "";
+        $.each(data.grupo, function(i, dados){
+          if(dados.status == 'Ativado'){
+                  itemlista += ` <div class="quadroGrupo " style="background: #58D6AB" onClick="enviarGrupo(${dados.codigo})">
+
+                                    <span class="nomeGrupo"> ${dados.nome} </span>
+                                    <span class="siglaGrupo">${dados.sigla}</span>
+                                    <br>
+                                  </div> `
+          } else if(dados.status =='Desativado'){
+            itemlista += ` <div class="quadroGrupo " style="background: #FF6565" onClick="enviarGrupo(${dados.codigo})">
+                                    <span class="nomeGrupo">${dados.nome}</span>
+                                    <span class="siglaGrupo">${dados.sigla}</span>
+                                    <br>
+
+                                  </div> `
+          }
+
+            
+        });
+
+        $(".centro").html(`<div class="quadroGrupo " onClick="cadastrarGrupo(${data.grupo.codigoModulo})">
+                                <img src="galeria/icon/iconeCruz.png" alt="">
+                                <span class="tituloAdicionar">Adicionar Grupo</span>
+                          </div>  ` + itemlista);
+
+      },
+    error: function(data, status, erro){
+      alert("Status: " + status + " Descrição: " + erro);
+      alert(data);
+    }
+  });
+  }
+
   $(document).on("change", '.cadastrarComponenteDisponivel', function(){
 
     var parametros = {
@@ -578,7 +698,7 @@ const buscarDadosComponente = (codigo) =>{
         $.each(data.modulo, function(i, dados){
           $(".cadastrarProfessor").attr('onClick', `cadastrarProfessor(${dados.codigo})`);
           $(".cadastrarAluno").attr('onClick', `cadastrarAluno(${dados.codigo})`);
-          $(".cadastrarGrupoEstagio").attr("onClick", `cadastrarGrupo(${dados.codigo})`);
+          $(".cadastrarGrupoEstagio").attr("onClick", `exibirGrupos(${dados.codigo})`);
           $('h4').text(`${dados.numero} MÓDULO`);
           exibirCorpoDocente(dados.codigo);
           exibirAlunos(dados.codigo);
@@ -601,7 +721,6 @@ const buscarDadosComponente = (codigo) =>{
      data: parametros,
      dataType: "JSON",
      success: function(data){
-       alert('oi');
        var itemlista = "";
        $.each(data.aluno, function(i, dados){
             itemlista += `<tr>

@@ -486,3 +486,40 @@ input:checked + .slider:before {
 .siglaModulo{
   display: block;
 }
+
+/* Componentes - Grupo */
+
+.quadroGrupo{
+  text-align: center;
+  display: inline-block;
+  width: 25vh;
+  height: 22vh;
+  background: #B5B5B5;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.14);
+  border-radius: 18px;
+  color: whitesmoke;
+  cursor: pointer;
+  margin-left: 1vh;
+  margin-top: 1vh;
+  padding-top: 1vh;
+}
+
+
+
+.quadroGrupo img{
+  width: 55%;
+}
+.nomeGrupo{
+  padding-top: 5.6vh;
+  display: block;
+  font-weight: bold;
+}
+.siglaGrupo{
+  display: block;
+}
+
+.espacoVazio{
+  display: block;
+  font-size: 12px;
+  
+}
