@@ -22,9 +22,9 @@ $(document).on("mouseover", ".sidebar", function(){
     $(".fundo").css("position", "");
 
 
-  }); 
+  });
 
-  
+
   $(document).on("click", "#btnLogin", function(){
     $(location).attr("href", "menuUsuario.html");
   })
@@ -46,6 +46,11 @@ $(document).on("mouseover", ".sidebar", function(){
     $("#modalCadastroModulo").modal('show');
   });
 
+//Abrir modal de perfil//
+  $(document).on("click", ".exibirPerfil", function(){
+    $("#modalExibirPerfil").modal('show');
+  });
+//------------------------------------------------------------//
   const cadastrarProfessor = (codigo) =>{
     $("#modalCadastroCorpoDocente").modal('show');
     populaModalOptionComponente();
@@ -110,7 +115,7 @@ $(document).on("mouseover", ".sidebar", function(){
 
    }
 
-  
+
 
   //BTN - Cadastro
   const confirmarCadastroGrupo = (codigo) =>{
@@ -138,9 +143,9 @@ $(document).on("mouseover", ".sidebar", function(){
         error: function(data){
             alert('Erro');
         }
-        
+
     });
-    
+
   }
   const confirmarCadastroAluno = (codigo) =>{
       var parametros = {
@@ -195,7 +200,7 @@ $(document).on("mouseover", ".sidebar", function(){
       telefone:$("#cadastrarTelefoneUsuario").val()
     }
 
-    
+
     $.ajax({
       type: "POST",
       url: "./templates/php/usuario/cadastro.php",
@@ -217,7 +222,7 @@ $(document).on("mouseover", ".sidebar", function(){
       nome:$('.cadastrarNmLocal').val(),
       endereco:$('.cadastrarEnderecoLocal').val(),
       sigla:$('.cadastrarSiglaLocal').val()
-      
+
     }
 
     $.ajax({
@@ -243,7 +248,7 @@ $(document).on("mouseover", ".sidebar", function(){
       modulo:$('.cadastrarModuloComponente').val(),
       local:$('.cadastrarLocalComponente').val()
 
-      
+
     }
 
     $.ajax({
@@ -270,7 +275,7 @@ $(document).on("mouseover", ".sidebar", function(){
       sigla:$('.cadastrarSiglaModulo').val(),
       numeroModulo:$(".cadastrarNumeroModulo").val()
 
-      
+
     }
 
     $.ajax({
@@ -288,10 +293,10 @@ $(document).on("mouseover", ".sidebar", function(){
 
   });
 
-  
-  
 
-  
+
+
+
   //BTN - Alterar
 
   $(document).on("click", ".btnAlterarUsuario", function(){
@@ -366,8 +371,8 @@ $(document).on("click", ".btnAlterarComponente", function(){
     }
   });
 });
-  
-  //Function - Listar 
+
+  //Function - Listar
 
   const listarTodosUsuario = () =>{
     $.ajax({
@@ -433,7 +438,7 @@ $(document).on("click", ".btnAlterarComponente", function(){
       dataType:"json",
       success: function(data){
         var itemlista = "";
-        
+
         $.each(data.componente, function(i, dados){
             itemlista += `  <tr>
                                 <td><span class="${dados.status}"> ${dados.status}</span></td>
@@ -462,7 +467,7 @@ $(document).on("click", ".btnAlterarComponente", function(){
       dataType:"json",
       success: function(data){
         var itemlista = "";
-        
+
         $.each(data.modulo, function(i, dados){
           if(dados.status == 'Ativado'){
                   itemlista += ` <div class="quadroModulo moduloAtivo" style="background: #58D6AB" onClick="enviarModulo(${dados.codigo})">
@@ -478,7 +483,7 @@ $(document).on("click", ".btnAlterarComponente", function(){
                                   </div> `
           }
 
-            
+
         });
 
         $(".centro").html(`<div class="quadroModulo cadastrarModulo">
@@ -495,7 +500,7 @@ $(document).on("click", ".btnAlterarComponente", function(){
   }
 
   const listarTodosGrupo = () =>{
-    
+
     $.ajax({
       type: "post",
       url: "./templates/php/grupo/populaQuadroGrupo.php",
@@ -519,7 +524,7 @@ $(document).on("click", ".btnAlterarComponente", function(){
                                   </div> `
           }
 
-            
+
         });
 
         $(".centro").html(`<div class="quadroGrupo " onClick="cadastrarGrupo(${data.grupo.codigoModulo})">
@@ -549,7 +554,7 @@ $(document).on("click", ".btnAlterarComponente", function(){
           $.each(data.campo, function(i, dados){
               $('.cadastrarCampoDisponivel').val(dados.nome);
           });
-          
+
         },
         error: function(data){
           alert("Erro");
@@ -604,7 +609,7 @@ $(document).on("click", ".btnAlterarComponente", function(){
         error: function(request, status, erro){
           alert("Problema" + status + " Descrição " + erro);
         }
-        
+
       });
 }
 
@@ -625,7 +630,7 @@ const buscarDadosCampo = (codigo) =>{
           $(".alterarEnderecoLocal").val(dados.endereco);
           $(".alterarSiglaLocal").val(dados.sigla);
           $(".alterarCodigoLocal").val(dados.codigo);
-          
+
       });
 
       $("#modalAlterarLocal").modal('show');
@@ -633,7 +638,7 @@ const buscarDadosCampo = (codigo) =>{
     error: function(request, status, erro){
       alert("Problema" + status + " Descrição " + erro);
     }
-    
+
   });
 }
 
@@ -653,7 +658,7 @@ const buscarDadosComponente = (codigo) =>{
           $(".alterarNmComponente").val(dados.nome);
           $(".alterarCargaComponente").val(dados.hora);
           $(".alterarCodigoComponente").val(dados.codigo);
-          
+
       });
       acumularOptionLocal();
       $("#modalAlterarComponente").modal('show');
@@ -661,7 +666,7 @@ const buscarDadosComponente = (codigo) =>{
     error: function(request, status, erro){
       alert("Problema" + status + " Descrição " + erro);
     }
-    
+
   });
 }
 
@@ -683,13 +688,13 @@ const buscarDadosComponente = (codigo) =>{
     error: function(request, status, erro){
       alert("Problema" + status + " Descrição " + erro);
     }
-    
+
   });
 
  }
 
  const exibirModulo = () =>{
-   
+
    $.ajax({
      type:"post",
      url: "./templates/php/modulo/exibirModulo.php",
@@ -749,11 +754,11 @@ const buscarDadosComponente = (codigo) =>{
       success: function(data){
           var itemlista = "";
           $.each(data.modulo, function(i, dados){
-              itemlista+= `<tr> 
-                            <td> ${dados.nomeProfessor}</td> 
-                            <td>${dados.nomeComponente} </td> 
-                            <td>${dados.nomeCampo} </td> 
-              
+              itemlista+= `<tr>
+                            <td> ${dados.nomeProfessor}</td>
+                            <td>${dados.nomeComponente} </td>
+                            <td>${dados.nomeCampo} </td>
+
                             </tr>`
           });
 
@@ -808,6 +813,3 @@ const buscarDadosComponente = (codigo) =>{
     }
   })
 }
-
-
- 

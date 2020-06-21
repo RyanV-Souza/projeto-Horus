@@ -3,76 +3,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 
-  
-
 
   <link rel="stylesheet" href="templates/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="templates/css/style.css" /> 
-  <link rel="stylesheet" href="templates/css/modulo.css" />
-
+  <link rel="stylesheet" href="templates/css/style.css" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap"rel="stylesheet"/>
 
-  
-  
+
+
 </head>
 
 <body >
   <div class="quadro">
       <div class="topo">
-          <h4></h4>
+          <h4>Alunos</h4>
       </div>
-      <div class="centro">  
-          <div class="blocoDocente">
-            <div class="blocoTabelaDocente">
-              <table class="table">
-                <thead>
-                    <tr>
-                        <th colspan='3'>Corpo Docente</th>
-                    </tr>
-                </thead>
-                <tbody class="tbodyProfessor">
-                    <tr>
-                        <th>Nome</th>
-                        <th>Componente</th>
-                        <th>Local</th>
-                    </tr>
-                    
-                </tbody>
-              </table>
-            </div>
-
-            <button type="submit" class="btnEstilo cadastrarProfessor">Cadastrar Professor</button>
-          </div> 
-          
-          <div class="blocoAluno">
-                <div class="blocoTabelaAluno">
+      <div class="centro">
+          <div class="row">
+              <div class="col-md-2">
+                  <button type="submit" class="cadastrarUsuario btnEstilo">CADASTRAR</button>
+              </div>
+              <div class="col-md-9">
+                 <div class="form-group">
+                    <select name="" id="" class="select opcaoUsuario">
+                        <option value="">Cargo</option>
+                        <option value="">Nome</option>
+                        <option value="">RM</option>
+                    </select>
+                    <input type="search" name="" id="" class="inputPesquisa pesquisaUsuario " placeholder="Digite aqui...">
+                 </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-11">
+                  <div class="table-responsive-md">
                       <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Alunos</th>
-                            </tr>
-                        </thead>
-                        <tbody class="tbodyAluno">
-                            
-                        </tbody>
+
+                          <thead>
+                              <tr>
+                                  <th>Status</th>
+                                  <th>Nome</th>
+                                  <th>Cargo</th>
+                                  <th>Registro de Matrícula</th>
+                                  <th colspan="2">Editar dados</th>
+                              </tr>
+                          </thead>
+
+                          <tbody class="tbodyUsuario">
+
+                              <tr>
+
+                              </tr>
+
+                          </tbody>
                       </table>
-                </div>
-
-                <button type="submit" class="btnEstilo cadastrarAluno">Cadastrar Aluno</button>
-
+                  </div>
+              </div>
           </div>
 
-          <div class="blocoBotoes">
-            <button type="submit" class="btnEstilo cadastrarCronograma">Cronograma</button>
-            <button type="submit" class="btnEstilo cadastrarGrupoEstagio">Grupos de Estágio</button>
-            <button type="submit" class="btnEstilo alterarModulo">Alterar Informações</button>
-            <button type="submit" class="btnEstilo desativarModulo" style="background: #F45353;">Desativar</button>
 
-          </div>
-      </div>           
-      
+      </div>
   </div>
-  
+
 
   <div class="fundo"></div>
 
@@ -144,51 +135,108 @@
   </nav>
 
 
-  <div class="modal fade" id="modalCadastroCorpoDocente" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <div class="form-group">
+  <!-- Modal Perfil -->
+
+  <div class="modal fade" id="modalExibirPerfil" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" id="modal-contentPerfil">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <div class="form-group">
+
                 <div class="row">
                     <div class="col-md-12">
-                        <label for="">Professores</label>
-                        <select name="" id="" class="cadastrarProfessorDisponivel form-control">
-                        </select>
+                      <img src="galeria/icon/user.png" alt="" id="imgPerfil">
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-12">
-                        <label for="">Componentes Curriculares</label>
-                        <select name="" id="" class="cadastrarComponenteDisponivel form-control" >
-
-                        </select>
+                      <span id="nomePerfil">Thiago F.Franco</span>
                     </div>
                 </div>
 
-                <div class="row">
-                  <div class="col-md-12">
-                      <label for="">Campo de Estágio</label>
-                      <input type="text" class="form-control cadastrarCampoDisponivel" disabled>
+                  <div class="row">
+                      <div class="col-md-12">
+                          <input type="text" id="emailUsuario" class=" form-control"  value="E-mail: abc123@gmal.com" readonly>
+                      </div>
                   </div>
-              </div>
-                
+                  <br>
+                  <div class="row">
+                      <div class="col-md-12">
+                          <input type="tel" id="telefoneUsuario" class=" form-control" value="(00 )1234-5678" readonly>
+                      </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                      <div class="col-md-12">
+                          <input type="password" class=" form-control" value="1234"readonly>
+                      </div>
+                  </div>
 
-            </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btnEstilo btnCadastrarCorpoDocente" style="width: 100%">CADASTRAR PROFESSOR</button>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btnEstilo btnEditarUsuario">Editar</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
+
+
+  <!--Modal Cadastro-->
   <div class="modal fade" id="modalCadastroAluno" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <label for="">Nome</label>
+                          <input type="text" id="cadastrarNmAluno class=" form-control" placeholder="Ex: Pedro Henrique Gomes">
+                      </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-md-12">
+                          <label for="">Registro de Matrícula</label>
+                          <input type="text" id="cadastrarRmAluno" class=" form-control" placeholder="Ex: 0000">
+                      </div>
+                  </div>
+
+
+
+                  <div class="row">
+                      <div class="col-md-12">
+                          <label for="">CPF</label>
+                          <input type="text" id="cadastrarCPFAluno" class=" form-control" placeholder="Ex: 000.000.000-00">
+                      </div>
+                  </div>
+
+
+
+
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btnEstilo btnCadastrarAluno">CADASTRAR USUÁRIO</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+     <!--Modal Cadastro-->
+  <div class="modal fade" id="modalAlterarAluno" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -200,31 +248,38 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-12">
-                        <label for="">Nome do Aluno:</label>
-                        <input type="text" name="" id="" class="cadastrarNmAluno form-control" placeholder="Ex: Ryan Vieira Souza">
+                        <label for="">Nome</label>
+                        <input type="text" id="alterarNmAluno" class=" form-control" placeholder="Ex: Pedro Henrique Gomes">
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-12">
-                        <label for="">RM</label>
-                        <input type="text" name="" id="" class="cadastrarRmAluno form-control" placeholder="Ex: 11111">
-
+                        <label for="">Registro de Matrícula</label>
+                        <input type="text" id="alterarRmAluno" class=" form-control" placeholder="Ex: 0000" >
                     </div>
                 </div>
-
+                
                 <div class="row">
                   <div class="col-md-12">
-                      <label for="">CPF</label>
-                      <input type="text" class="form-control cadastrarCPFAluno cpfMask" placeholder="Ex: 000.000.000-00">
+                      <label for="">Cpf</label>
+                      <input type="text" id="alterarCPFAluno" class=" cpfMask form-control" placeholder="Ex: 000.000.000-00" >
                   </div>
               </div>
-                
 
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="">Status</label>
+                        <select type="text" id="alterarStatusAluno" class=" form-control">
+                          <option value="Ativado">Ativado</option>
+                          <option value="Desativado">Desativado</option>
+                      </select>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btnEstilo btnCadastrarAluno" style="width: 100%">CADASTRAR ALUNO</button>
+          <button type="button" class="btnEstilo btnAlterarUsuario">ALTERAR ALUNO</button>
         </div>
       </div>
     </div>
@@ -293,17 +348,22 @@
   </div>
 
 
+<script src="./templates/js/jquery-3.4.1.min.js"></script>
+<script src="./templates/js/jquery-mask.js"></script>
+<script src="./templates/js/bootstrap.min.js"></script>
+<script src="./templates/js/index.js"></script>
 
-    <script src="templates/js/jquery-3.4.1.min.js"></script>
-    <script src="./templates/js/jquery-mask.js"></script>
-    <script src="templates/js/bootstrap.min.js"></script>
-    <script src="templates/js/index.js"></script>
-    <script>
-        $(document).ready(function(){
-          exibirModulo();
-          $(".cpfMask").mask("999.999.999-99");
-        });
-    </script>
+<script>
+  $(document).ready(function(){
+
+  listarTodosUsuario();
+  
+  $(".cpfMask").mask("999.999.999-99");
+
+});
+
+
+</script>
 
 </body>
 </html>

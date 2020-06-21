@@ -156,12 +156,12 @@ body::-webkit-scrollbar-thumb {
 }
 
 .fa-primary {
-  color: #1A2040;
+  color: blacck;
 
 }
 
 .fa-secondary {
-  color: #1A2040;
+  color: black;
 }
 
 .fa-primary,
@@ -252,9 +252,9 @@ body::-webkit-scrollbar-thumb {
 
 .dark {
   --text-primary: #b6b6b6;
-  --text-secondary: #ececec;
+  --text-secondary: black;
   --bg-primary: #23232e;
-  --bg-secondary: #141418;
+  --bg-secondary: black;
 }
 
 
@@ -270,7 +270,7 @@ body::-webkit-scrollbar-thumb {
 /*Componentes Repetitivos*/
 
 table{
-  border: 3px solid #F1F1F1;
+  border: 5px solid #F1F1F1;
   box-sizing: border-box;
   text-align: center;
 }
@@ -304,16 +304,48 @@ table thead{
 }
 
 .btnEstilo{
+  color: #2E2E2E;
   width: 100%;
   height: 40px;
   border: none;
   background: #58D6AB;
-  border-radius: 10px;
+  border-radius: 8px;
   font-family: "ProductSans";
   font-size: 14px;
   font-weight: bold;
 }
 
+
+/*perfil*/
+#modalExibirPerfil .modal-content{
+  text-align: center;
+  width: 65%;
+}
+
+#modalExibirPerfil .modal-footer{
+  text-align: center;
+}
+
+#modalExibirPerfil input{
+  height: 30px;
+  margin-bottom: -5%;
+}
+
+#imgPerfil{
+  width: 25%;
+  margin-bottom: 3%;
+}
+
+#nomePerfil{
+  margin-bottom: 30px;
+  font-family: "ProductSans";
+}
+
+.btnEditarUsuario{
+  width: 50%;
+  margin-right: 25%;
+  color:white;
+}
 
 /*Componentes Repetitivos - Status*/
 
@@ -361,7 +393,7 @@ label{
 
 .modal-content{
   width: 70%;
-border-radius: 40px;
+border-radius: 15px;
 }
 
 .modal-header{
@@ -371,7 +403,7 @@ border-radius: 40px;
 
 .modal-body input{
   background:  #F4F4F4;
-  border-radius: 10px;
+  border-radius: 6px;
   border: 0;
 }
 
@@ -384,6 +416,8 @@ border-radius: 40px;
 }
 
 .modal-footer{
+  background:  #F4F4F4;
+  border-radius: 6px;
   border: 0;
 
 }
@@ -466,7 +500,7 @@ input:checked + .slider:before {
   height: 22vh;
   background: #B5B5B5;
   box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.14);
-  border-radius: 18px;
+  border-radius: 8px;
   color: whitesmoke;
   cursor: pointer;
   margin-left: 1vh;
@@ -521,5 +555,5 @@ input:checked + .slider:before {
 .espacoVazio{
   display: block;
   font-size: 12px;
-  
+
 }

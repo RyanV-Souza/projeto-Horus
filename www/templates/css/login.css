@@ -1,6 +1,6 @@
 a* {
   margin: 0;
-    font-family: myFirstFont;
+  font-family: "ProductSans";
 }
 body{
   background-image: url('../imagem/teste3.png');
@@ -27,19 +27,23 @@ body{
 h1 {
   font-size: calc(20px + 2vh);
   margin-left: 10%;
+  font-family: "ProductSans";
 }
 h2 {
   font-size: 27px;
   margin-left: 44%;
   margin-top: 39.5%;
   opacity: 0.5;
+  font-family: "ProductSans";
 }
 
 .input-form {
   max-width: 80%;
+  font-family: "ProductSans";
 }
 #entrar{
   margin-right:10%;
+  font-family: "ProductSans";
 }
 
 #registro{
@@ -52,13 +56,15 @@ h2 {
 .btn {
   display: block;
   margin: 0 auto;
+  font-family: "ProductSans";
 }
 p{
   text-align: center;
   margin-top: 60px;
+  
 }
 
 @font-face {
-  font-family: myFirstFont;
+  font-family: "ProductSans";
   src: url("../fonts/ProductSans.ttf");
 }

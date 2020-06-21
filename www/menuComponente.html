@@ -70,7 +70,7 @@
     <ul class="side-nav">
       <li class="logo">
         <a href="#" class="side-link">
-          <span class="link-text logo-text">Perfil</span>
+          <span class="link-text logo-text exibirPerfil">Perfil</span>
           <svg
             aria-hidden="true"
             focusable="false"
@@ -256,6 +256,68 @@
         </div>
       </div>
     </div>
+
+    <!-- Modal Perfil -->
+
+  <div class="modal fade" id="modalExibirPerfil" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content" id="modal-contentPerfil">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+
+              <div class="row">
+                  <div class="col-md-12">
+                    <img src="galeria/icon/user.png" alt="" id="imgPerfil">
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-md-12">
+                    <span id="nomePerfil">Thiago F.Franco</span>
+                  </div>
+              </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="">E-Mail</label>
+                        <input type="text" class="alterarEmailUsuario form-control"   readonly>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="">Telefone</label>
+                        <input type="tel" class="alterarTelefoneUsuario form-control" readonly>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="">CPF</label>
+                        <input type="text" class=" form-control alterarCPFUsuario" readonly>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="">Senha</label>
+                        <input type="password" class=" form-control alterarSenhaUsuario" readonly>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btnEstilo btnEditarUsuario">Editar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 <script src="templates/js/jquery-3.4.1.min.js"></script>

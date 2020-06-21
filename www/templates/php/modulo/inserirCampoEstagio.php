@@ -4,7 +4,7 @@
 
     $codigo = $_POST['codigo'];
 
-    $query = "select tb_campoestagio.nm_campoEstagio, tb_componentecampoestagioprofessor.cd_componentecampoestagioprofessor from tb_componentecampoestagioprofessor, tb_campoestagio where tb_componentecampoestagioprofessor.FK_cd_componente = $codigo and tb_componentecampoestagioprofessor.FK_cd_campoEstagio = tb_campoestagio.cd_campoEstagio";
+    $query = "select tb_campoestagio.nm_campoEstagio, tb_componentecampoestagio.cd_componentecampoestagio from tb_componentecampoestagio, tb_campoestagio where tb_componentecampoestagio.FK_cd_componente = $codigo and tb_componentecampoestagio.FK_cd_campoEstagio = tb_campoestagio.cd_campoEstagio";
 
     $result = mysqli_query($link, $query);
 
@@ -17,7 +17,7 @@
     while($linha = mysqli_fetch_assoc($result)){
         $registros['campo'][$i] = array(
             'nome' => $linha['nm_campoEstagio'],
-            'codigo' => $linha['cd_componentecampoestagioprofessor']
+            'codigo' => $linha['cd_componentecampoestagio']
             
         );
         

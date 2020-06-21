@@ -7,8 +7,11 @@
     $codigoProfessor = $_POST['codigoProfessor'];
     $codigoTabela = $_SESSION['codigoComponente'];
 
-    $result = mysqli_multi_query($link, "update tb_componentecampoestagioprofessor set FK_cd_professor = $codigoProfessor where cd_componentecampoestagioprofessor = $codigoTabela;insert into tb_componentecampoestagioprofessor_modulo (FK_cd_componenteCampoEstagioProfessor, FK_cd_modulo) values ($codigoTabela, $codigoModulo)");
+    $result = mysqli_query($link, "insert into tb_componentecampoestagioprofessor  (FK_cd_professor, FK_cd_componentecampoestagio) values  ($codigoProfessor, $codigoTabela)");
     
+    $id = mysqli_insert_id($link);
+
+    mysqli_query($link, "insert into tb_componentecampoestagioprofessor_modulo (FK_cd_componenteCampoEstagioProfessor, FK_cd_modulo) values ($id, $codigoModulo);");
     
 
     

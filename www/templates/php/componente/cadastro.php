@@ -12,5 +12,5 @@
 
     $id = mysqli_insert_id($link);
 
-    mysqli_query($link, "insert into tb_componentecampoestagioprofessor (FK_cd_componente, FK_cd_campoEstagio) values ($id, $local)");
+    mysqli_query($link, "insert into tb_componentecampoestagio (FK_cd_componente, FK_cd_campoEstagio) values ($id, $local)");
 
