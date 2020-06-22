@@ -1,4 +1,63 @@
+//Validar CPF
 
+$(document).on("blur", "#cadastrarCPFUsuario", function(){
+  validarCPF($(this).val());
+});
+
+$(document).on("blur", ".cadastrarCPFAluno", function(){
+  validarCPF($(this).val());
+});
+
+function validarCPF(cpf) {	
+	cpf = cpf.replace(/[^\d]+/g,'');	
+	if(cpf == '') return false;	
+	// Elimina CPFs invalidos conhecidos	
+	if (cpf.length != 11 || 
+		cpf == "00000000000" || 
+		cpf == "11111111111" || 
+		cpf == "22222222222" || 
+		cpf == "33333333333" || 
+		cpf == "44444444444" || 
+		cpf == "55555555555" || 
+		cpf == "66666666666" || 
+		cpf == "77777777777" || 
+		cpf == "88888888888" || 
+		cpf == "99999999999"){
+      $(".cpfMask").css("box-shadow", "0px 0px 9px 0px rgba(255,5,5,0.52)");
+      $(".btnCadastrarUsuario").attr("disabled", true);  
+			return alert("CPF Inválido");	
+    }
+					
+	// Valida 1o digito	
+	add = 0;	
+	for (i=0; i < 9; i ++)		
+		add += parseInt(cpf.charAt(i)) * (10 - i);	
+		rev = 11 - (add % 11);	
+		if (rev == 10 || rev == 11)		
+			rev = 0;	
+    if (rev != parseInt(cpf.charAt(9))){
+      $(".cpfMask").css("box-shadow", "0px 0px 9px 0px rgba(255,5,5,0.52)");
+      $(".btnCadastrarUsuario").attr("disabled", true);  
+			return alert("CPF Inválido");	
+    }
+      
+	// Valida 2o digito	
+	add = 0;	
+	for (i = 0; i < 10; i ++)		
+		add += parseInt(cpf.charAt(i)) * (11 - i);	
+	rev = 11 - (add % 11);	
+	if (rev == 10 || rev == 11)	
+		rev = 0;	
+	if (rev != parseInt(cpf.charAt(10))){
+    $(".cpfMask").css("box-shadow", "0px 0px 9px 0px rgba(255,5,5,0.52)");
+    $(".btnCadastrarUsuario").attr("disabled", true);  
+			return alert("CPF Inválido");	
+  }
+
+  $('.cpfMask').css("box-shadow", "0px 0px 9px 0px rgba(64,204,29,1)");
+  $(".btnCadastrarUsuario").attr("disabled", false);   
+	return true;
+}
 
 
 $(document).on("mouseover", ".sidebar", function(){
@@ -50,6 +109,10 @@ $(document).on("mouseover", ".sidebar", function(){
   $(document).on("click", ".exibirPerfil", function(){
     $("#modalExibirPerfil").modal('show');
   });
+
+  $(document).on("click", ".cadastrarAlunoCSV", function(){
+    $("#modalCadastroAlunoCSV").modal('show');
+  })
 //------------------------------------------------------------//
   const cadastrarProfessor = (codigo) =>{
     $("#modalCadastroCorpoDocente").modal('show');
@@ -63,10 +126,6 @@ $(document).on("mouseover", ".sidebar", function(){
      $("#modalCadastroGrupo").modal('show');
      exibirAlunosDisponiveis(codigo);
      $('.btnCadastrarGrupo').attr('onClick', `confirmarCadastroGrupo(${codigo})`);
-   }
-   const cadastrarAluno = (codigo) =>{
-     $("#modalCadastroAluno").modal('show');
-     $(".btnCadastrarAluno").attr("onClick", `confirmarCadastroAluno(${codigo})`);
    }
 
    const exibirAlunosDisponiveis = (codigo) =>{
@@ -137,7 +196,7 @@ $(document).on("mouseover", ".sidebar", function(){
         url:"./templates/php/grupo/cadastrarGrupo.php",
         data:parametros,
         success: function(data){
-            alert("Cadastrado com Sucesso");
+            
             document.location.reload(true);
         },
         error: function(data){
@@ -161,7 +220,7 @@ $(document).on("mouseover", ".sidebar", function(){
         url: "./templates/php/aluno/cadastro.php",
         data: parametros,
         success: function(data){
-          alert('Cadastrado com Sucesso!');
+ 
           document.location.reload(true);
         },
         error: function(data){
@@ -181,7 +240,7 @@ $(document).on("mouseover", ".sidebar", function(){
           url: "./templates/php/modulo/cadastrarCorpoDocente.php",
           data:parametros,
           success: function(data){
-              alert("Cadastrado com Sucesso!");
+
               document.location.reload(true);
           },
           error: function(data){
@@ -206,7 +265,7 @@ $(document).on("mouseover", ".sidebar", function(){
       url: "./templates/php/usuario/cadastro.php",
       data:parametros,
       success: function(data){
-        alert('Cadastrado com sucesso');
+  
         document.location.reload(true);
       },
       error: function(request, status, erro){
@@ -230,7 +289,7 @@ $(document).on("mouseover", ".sidebar", function(){
       url: "./templates/php/local/cadastro.php",
       data:parametros,
       success: function(data){
-        alert('Cadastrado com sucesso');
+
         document.location.reload(true);
       },
       error: function(request, status, erro){
@@ -256,7 +315,7 @@ $(document).on("mouseover", ".sidebar", function(){
       url: "./templates/php/componente/cadastro.php",
       data:parametros,
       success: function(data){
-        alert('Cadastrado com sucesso');
+
         document.location.reload(true);
       },
       error: function(request, status, erro){
@@ -283,7 +342,7 @@ $(document).on("mouseover", ".sidebar", function(){
       url: "./templates/php/modulo/cadastro.php",
       data:parametros,
       success: function(data){
-        alert('Cadastrado com sucesso');
+
         document.location.reload(true);
       },
       error: function(request, status, erro){
@@ -702,7 +761,6 @@ const buscarDadosComponente = (codigo) =>{
      success: function(data){
         $.each(data.modulo, function(i, dados){
           $(".cadastrarProfessor").attr('onClick', `cadastrarProfessor(${dados.codigo})`);
-          $(".cadastrarAluno").attr('onClick', `cadastrarAluno(${dados.codigo})`);
           $(".cadastrarGrupoEstagio").attr("onClick", `exibirGrupos(${dados.codigo})`);
           $('h4').text(`${dados.numero} MÓDULO`);
           exibirCorpoDocente(dados.codigo);

@@ -58,7 +58,7 @@
                       </table>
                 </div>
 
-                <button type="submit" class="btnEstilo cadastrarAluno">Cadastrar Aluno</button>
+                <button type="submit" class="btnEstilo cadastrarAlunoCSV">Cadastrar Aluno</button>
 
           </div>
 
@@ -188,7 +188,7 @@
     </div>
   </div>
 
-  <div class="modal fade" id="modalCadastroAluno" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal fade" id="modalCadastroAlunoCSV" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -196,36 +196,22 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-md-12">
-                        <label for="">Nome do Aluno:</label>
-                        <input type="text" name="" id="" class="cadastrarNmAluno form-control" placeholder="Ex: Ryan Vieira Souza">
+        <form action="templates/php/aluno/cadastrarCSV.php" method="POST" enctype="multipart/form-data">
+          <div class="modal-body">
+            
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <label for="">Insira o arquivo:</label>
+                          <input type="file" name="file" id="" class="form-control" >
+                      </div>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <label for="">RM</label>
-                        <input type="text" name="" id="" class="cadastrarRmAluno form-control" placeholder="Ex: 11111">
-
-                    </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-md-12">
-                      <label for="">CPF</label>
-                      <input type="text" class="form-control cadastrarCPFAluno cpfMask" placeholder="Ex: 000.000.000-00">
-                  </div>
               </div>
-                
-
-            </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btnEstilo btnCadastrarAluno" style="width: 100%">CADASTRAR ALUNO</button>
-        </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btnEstilo btnCadastrarAlunoCSV" style="width: 100%">CADASTRAR ALUNO</button>
+          </div>
+      </form>
       </div>
     </div>
   </div>
