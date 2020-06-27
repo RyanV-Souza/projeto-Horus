@@ -4,7 +4,7 @@ $(document).on("blur", "#cadastrarCPFUsuario", function(){
   validarCPF($(this).val());
 });
 
-$(document).on("blur", ".cadastrarCPFAluno", function(){
+$(document).on("blur", "#cadastrarCPFAluno", function(){
   validarCPF($(this).val());
 });
 
@@ -113,6 +113,10 @@ $(document).on("mouseover", ".sidebar", function(){
   $(document).on("click", ".cadastrarAlunoCSV", function(){
     $("#modalCadastroAlunoCSV").modal('show');
   })
+
+  $(document).on("click", ".cadastrarAlunoGrupo ", function(){
+    $("#modalCadastroAluno").modal('show');
+  })
 //------------------------------------------------------------//
   const cadastrarProfessor = (codigo) =>{
     $("#modalCadastroCorpoDocente").modal('show');
@@ -206,12 +210,11 @@ $(document).on("mouseover", ".sidebar", function(){
     });
 
   }
-  const confirmarCadastroAluno = (codigo) =>{
+  const confirmarCadastroAluno = () =>{
       var parametros = {
         nome:$('.cadastrarNmAluno').val(),
         rm:$('.cadastrarRmAluno').val(),
-        cpf:$('.cadastrarCPFAluno').val(),
-        codigoModulo:codigo
+        cpf:$('.cadastrarCPFAluno').val()
       }
 
 
@@ -323,6 +326,27 @@ $(document).on("mouseover", ".sidebar", function(){
       }
     });
 
+  });
+
+  $(document).on("click", ".btnCadastrarAluno", function(){
+    alert('oi');
+    var parametros = {
+      nome:$("#cadastrarNmAluno").val(),
+      rm:$("#cadastrarRmAluno").val(),
+      cpf:$("#cadastrarCPFAluno").val()
+    }
+
+    $.ajax({
+      type: "POST",
+      url: "./templates/php/aluno/cadastro.php",
+      data: parametros,
+      success: function(data){
+        document.location.reload(true);
+      },
+      error: function(data){
+        alert("Erro");
+      }
+    })
   });
 
   $(document).on("click", ".btnCadastrarModulo", function(){
@@ -599,6 +623,23 @@ $(document).on("click", ".btnAlterarComponente", function(){
   });
   }
 
+  const enviarGrupo = (codigo) =>{
+    var parametro = {
+      'codigoGrupo':codigo
+    }
+    $.ajax({
+      type: "post",
+      url: "./templates/php/grupo/enviarGrupo.php",
+      data: parametro,
+      success: function(data){
+        $(location).attr("href", "menuAluno.html");
+      },
+      error: function(data){
+        alert("Erro");
+      }
+    })
+  }
+
   $(document).on("change", '.cadastrarComponenteDisponivel', function(){
 
     var parametros = {
@@ -871,3 +912,98 @@ const buscarDadosComponente = (codigo) =>{
     }
   })
 }
+
+//Alunos -----------------------------------------------------
+const populaTabelaAlunoGrupo = () =>{
+  $.ajax({
+    type: "post",
+    url: "./templates/php/aluno/exibirAlunoGrupoModulo.php",
+    dataType: "JSON",
+    success: function(data){
+      var itemlista = "";
+      $.each(data.aluno, function(i, dados){
+        itemlista+= `<tr>
+                        <td><span class="${dados.status}"> ${dados.status}</span></td>
+                        <td>${dados.nome}</td>
+                        <td>${dados.nomeGrupo}</td>
+                        <td>${dados.rm}</td>
+                        <td><span > <img src="galeria/icon/writing.png" alt="Editar" class= "icon2" onClick="buscarDadosAluno(${dados.rm})"></span></td>
+                        <td><span ></span></td>
+                    </tr>`
+
+      });
+
+      $(".tbodyAlunosGrupo").html(itemlista);
+    },
+    error: function(data){
+      alert("erro");
+    }
+  })
+}
+
+const buscarDadosAluno = (codigo) => {
+    var parametros = {
+      "codigo":codigo
+    }
+    $.ajax({
+      type: "post",
+      url: "./templates/php/aluno/listarUm.php",
+      data: parametros,
+      dataType: "JSON",
+      success: function(data){
+          $.each(data.aluno, function(i, dados){
+            $("#alterarNmAluno").val(dados.nome);
+            $("#alterarRmAluno").val(dados.rm);
+          });
+          populaModalGrupoAluno();
+          $("#modalAlterarAluno").modal('show');
+          
+      },
+      error: function(data){
+        alert("Erro");
+      }
+    });
+}
+
+const populaModalGrupoAluno = () =>{
+
+  $.ajax({
+    type: "post",
+    url: "./templates/php/grupo/populaModalGrupoAluno.php",
+    dataType: "JSON",
+    success: function(data){
+
+      var itemlista = "";
+
+      $.each(data.grupo, function(i, dados){
+        itemlista += `<option value="${dados.codigo}"> ${dados.nome} </option>`;
+      });
+
+      $("#alterarGrupoAluno").html(itemlista);
+    },
+    error: function(data){
+      alert('Erro');
+    }
+  })
+}
+
+$(document).on("click", ".btnAlterarAluno", function(){
+  var parametros = {
+    nome:$("#alterarNmAluno").val(),
+    rm:$("#alterarRmAluno").val(),
+    status:$("#alterarStatusAluno").val(),
+    grupo:$("#alterarGrupoAluno").val()
+  }
+
+  $.ajax({
+    type: "post",
+    url: "./templates/php/aluno/atualizarAluno.php",
+    data: parametros,
+    success: function(data){
+      document.location.reload(true);
+    },
+    error: function(data){
+      alert("Erro");
+    }
+  });
+});

@@ -3,7 +3,7 @@
 
     $link = mysqli_connect('localhost', 'root', 'usbw', 'horus');
 
-    $codigo = $_SESSION['codigo'];
+    $codigo = $_SESSION['codigoModulo'];
 
     $query = "select * from tb_gruposala where FK_cd_modulo = $codigo";
 

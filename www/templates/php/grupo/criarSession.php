@@ -3,4 +3,4 @@
     $link = mysqli_connect('localhost', 'root', 'usbw', 'horus');
 
     $codigo = $_POST['codigoModulo'];
-    $_SESSION['codigo'] = $codigo;
+    $_SESSION['codigoModulo'] = $codigo;
