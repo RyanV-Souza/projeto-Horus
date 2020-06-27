@@ -23,6 +23,7 @@ body{
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: bottom;
+  text-align:
 }
 h1 {
   font-size: calc(20px + 2vh);
@@ -58,7 +59,7 @@ h2 {
   margin: 0 auto;
   font-family: "ProductSans";
 }
-p{
+.box p{
   text-align: center;
   margin-top: 60px;
   
@@ -68,3 +69,4 @@ p{
   font-family: "ProductSans";
   src: url("../fonts/ProductSans.ttf");
 }
+

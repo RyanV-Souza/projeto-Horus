@@ -6,12 +6,14 @@
     $nomeGrupo = $_POST['nomeGrupo'];
     $siglaGrupo = $_POST['siglaGrupo'];
 
-    $rmAlunos2 = implode(',', $rmAlunos);
+    
 
     mysqli_query($link, "insert into tb_grupoSala (sg_grupoSala, FK_cd_modulo, nm_grupoSala, ds_statusGrupo) values ('$siglaGrupo', $codigo, '$nomeGrupo', 'Ativado')");
 
     $id = mysqli_insert_id($link);
     var_dump($id);
+    
+    $rmAlunos2 = implode(',', $rmAlunos);
     
     $arrayAluno = explode(",", $rmAlunos2);
 

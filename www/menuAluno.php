@@ -1,8 +1,14 @@
+<?php
+  session_start();
+  if(!$_SESSION['usuarioLogin']){
+    header("Location: /projeto-horus/www/index.php");
+    exit();
+  }
+?>
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 
 
   <link rel="stylesheet" href="templates/css/bootstrap.min.css" rel="stylesheet">
@@ -16,20 +22,21 @@
 <body >
   <div class="quadro">
       <div class="topo">
-          <h4>CAMPO DE ESTÁGIO</h4>
+          <h4>Alunos</h4>
       </div>
       <div class="centro">
           <div class="row">
               <div class="col-md-2">
-                  <button type="submit" class="cadastrarLocal btnEstilo">CADASTRAR</button>
+                  <button type="submit" class="cadastrarAlunoGrupo btnEstilo">CADASTRAR</button>
               </div>
               <div class="col-md-9">
                  <div class="form-group">
-                    <select name="" id="" class="select opcaoLocal">
+                    <select name="" id="" class="select opcaoAluno">
+                        <option value="">Cargo</option>
                         <option value="">Nome</option>
-                        <option value="">Sigla</option>
+                        <option value="">RM</option>
                     </select>
-                    <input type="search" name="" id="" class="inputPesquisa pesquisaComponente " placeholder="Digite aqui...">
+                    <input type="search" name="" id="" class="inputPesquisa pesquisaUsuario " placeholder="Digite aqui...">
                  </div>
               </div>
           </div>
@@ -42,13 +49,17 @@
                               <tr>
                                   <th>Status</th>
                                   <th>Nome</th>
-                                  <th>Sigla</th>
+                                  <th>Grupo</th>
+                                  <th>Registro de Matrícula</th>
                                   <th colspan="2">Editar dados</th>
                               </tr>
                           </thead>
 
-                          <tbody class="tbodyCampo">
+                          <tbody class="tbodyAlunosGrupo">
 
+                              <tr>
+
+                              </tr>
 
                           </tbody>
                       </table>
@@ -96,25 +107,25 @@
       </li>
 
       <li class="side-item">
-        <a href="menuUsuario.html" class="side-link">
+        <a href="menuUsuario.php" class="side-link">
 
         <img  src='galeria/navbar/ICON USER.png' class="icon" >   <span class="link-text" >Usuario</span>
         </a>
       </li>
 
       <li class="side-item">
-        <a href="menuModulo.html" class="side-link">
+        <a href="menuModulo.php" class="side-link">
         <img  src='galeria/navbar/grup.png' class="icon" > <span class="link-text" >Módulos</span>
         </a>
       </li>
       <li class="side-item">
-        <a href="menuComponente.html" class="side-link">
+        <a href="menuComponente.php" class="side-link">
         <img  src='galeria/navbar/materia.png' class="icon" > <span class="link-text" >Componentes</span>
         </a>
       </li>
 
       <li class="side-item">
-        <a href="menuLocal.html" class="side-link">
+        <a href="menuLocal.php" class="side-link">
         <img  src='galeria/navbar/local.png' class="icon" > <span class="link-text" >Locais</span>
         </a>
       </li>
@@ -123,15 +134,18 @@
 
 
       <li class="side-item" id="themeButton">
-        <a href="index.html" class="side-link">
+        <a href="./templates/php/login/logout.php" class="side-link">
           <img  src='galeria/navbar/sair.png' class="icon" > <span class="link-text" >Sair</span>
         </a>
       </li>
     </ul>
   </nav>
 
+
+
+
   <!--Modal Cadastro-->
-  <div class="modal fade" id="modalCadastroLocal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal fade" id="modalCadastroAluno" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -144,93 +158,39 @@
                   <div class="row">
                       <div class="col-md-12">
                           <label for="">Nome</label>
-                          <input type="text" class="cadastrarNmLocal form-control" placeholder="Ex: Hospital Regional">
+                          <input type="text" id="cadastrarNmAluno" class="form-control" placeholder="Ex: Pedro Henrique Gomes">
                       </div>
                   </div>
 
                   <div class="row">
                       <div class="col-md-12">
-                          <label for="">Endereço</label>
-                          <input type="text" class="cadastrarEnderecoLocal form-control" placeholder="Ex: R. Pavão, 222 - Praia Grande - SP">
+                          <label for="">Registro de Matrícula</label>
+                          <input type="text" id="cadastrarRmAluno" class=" form-control" placeholder="Ex: 0000">
                       </div>
                   </div>
+
+
 
                   <div class="row">
                       <div class="col-md-12">
-                          <label for="">Sigla</label>
-                          <input type="text" class="cadastrarSiglaLocal form-control" placeholder="Ex: HR">
-
+                          <label for="">CPF</label>
+                          <input type="text" id="cadastrarCPFAluno" class=" form-control cpfMask" placeholder="Ex: 000.000.000-00">
                       </div>
                   </div>
+
+
+
 
               </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btnEstilo btnCadastrarLocal">CADASTRAR CAMPO</button>
+            <button type="button" class="btnEstilo btnCadastrarAluno">CADASTRAR ALUNO</button>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="modal fade" id="modalAlterarLocal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-              <div class="form-group">
-                  <div class="row">
-                      <div class="col-md-12">
-                          <label for="">Nome</label>
-                          <input type="text" class="alterarNmLocal form-control" >
-                      </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-12">
-                        <label for="">Código</label>
-                        <input type="text" class="alterarCodigoLocal form-control" disabled>
-                    </div>
-                </div>
-
-                  <div class="row">
-                      <div class="col-md-12">
-                          <label for="">Endereço</label>
-                          <input type="text" class="alterarEnderecoLocal form-control" >
-                      </div>
-                  </div>
-
-                  <div class="row">
-                      <div class="col-md-12">
-                          <label for="">Sigla</label>
-                          <input type="text" class="alterarSiglaLocal form-control" >
-
-                      </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-12">
-                        <label for="">Status</label>
-                        <select type="text" id="alterarStatusLocal" class=" form-control">
-                          <option value="Ativado">Ativado</option>
-                          <option value="Desativado">Desativado</option>
-                      </select>
-                    </div>
-                </div>
-
-              </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btnEstilo btnAlterarLocal">ALTERAR CAMPO</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal Perfil -->
+  <!-- Modal Perfil -->
 
   <div class="modal fade" id="modalExibirPerfil" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -258,50 +218,112 @@
                 <div class="row">
                     <div class="col-md-12">
                         <label for="">E-Mail</label>
-                        <input type="text" class="alterarEmailUsuario form-control"   readonly>
+                        <input type="text" class="alterarEmailPerfil form-control"   readonly="true">
                     </div>
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-md-12">
-                        <label for="">Telefone</label>
-                        <input type="tel" class="alterarTelefoneUsuario form-control" readonly>
-                    </div>
-                </div>
+                  <div class="col-md-12">
+                      <label for="">RM</label>
+                      <input type="tel" class="alterarRMPerfil form-control" readonly="true">
+                  </div>
+              </div>
                 <br>
                 <div class="row">
                     <div class="col-md-12">
                         <label for="">CPF</label>
-                        <input type="text" class=" form-control alterarCPFUsuario cpfMask" readonly>
+                        <input type="text" class=" form-control alterarCPFPerfil cpfMask" readonly="true">
                     </div>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-md-12">
                         <label for="">Senha</label>
-                        <input type="password" class=" form-control alterarSenhaUsuario" readonly>
+                        <input type="password" class=" form-control alterarSenhaPerfil" readonly="true">
                     </div>
                 </div>
 
             </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btnEstilo btnEditarUsuario">Editar</button>
+          <button type="button" class="btnEstilo btnEditarPerfil">Editar</button>
+          <button type="button" class="btnEstilo btnConfirmarEdicaoPerfil">Confirmar Alteração</button>
+          <button type="button" style="background: #FF6565" class="btnEstilo cancelarAlteracaoPerfil">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <!--Modal Alterar-->
+   <div class="modal fade" id="modalAlterarAluno" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="">Nome</label>
+                        <input type="text" id="alterarNmAluno" class=" form-control" placeholder="Ex: Pedro Henrique Gomes">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="">Registro de Matrícula</label>
+                        <input type="text" id="alterarRmAluno" class=" form-control" placeholder="Ex: 0000" disabled>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="">Status</label>
+                        <select type="text" id="alterarStatusAluno" class=" form-control">
+                          <option value="Ativado">Ativado</option>
+                          <option value="Desativado">Desativado</option>
+                      </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="">Grupo</label>
+                        <select  id="alterarGrupoAluno" class="form-control">
+                        </select>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btnEstilo btnAlterarAluno">ALTERAR ALUNO</button>
         </div>
       </div>
     </div>
   </div>
 
 
-<script src="templates/js/jquery-3.4.1.min.js"></script>
-<script src="templates/js/jquery-mask.js"></script>
-<script src="templates/js/bootstrap.min.js"></script>
-<script src="templates/js/index.js"></script>
+<script src="./templates/js/jquery-3.4.1.min.js"></script>
+<script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js"></script>
+<script src="./templates/js/bootstrap.min.js"></script>
+<script src="./templates/js/index.js"></script>
+
 <script>
-    $(document).ready(function(){
-      listarTodosCampo();
-      $(".cpfMask").masK("999.999.999-99");
-    })
+  $(document).ready(function(){
+    
+    verificarLogin();
+    populaTabelaAlunoGrupo();
+    $(".cpfMask").mask("999.999.999-99");
+  
+
+});
+
+
 </script>
 
 </body>

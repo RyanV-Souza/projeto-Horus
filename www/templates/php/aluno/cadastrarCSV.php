@@ -5,7 +5,7 @@
 
     $arquivo = $_FILES['file']['tmp_name'];
     $nome = $_FILES['file']['name'];
-    $codigoModulo = $_SESSION['codigo'];
+    $codigoModulo = $_SESSION['codigoModulo'];
 
     echo $codigoModulo;
 
@@ -31,7 +31,7 @@
 
         if($result){
             
-            Header("Location: /projeto-horus/www/modulo.html");
+            Header("Location: /projeto-horus/www/modulo.php");
         } else {
             echo "Erro ao inserir os dados.";
         }

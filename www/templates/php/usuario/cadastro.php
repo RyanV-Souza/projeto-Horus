@@ -6,9 +6,16 @@
     $email = $_POST["email"];
     $cpf = $_POST["cpf"];
     $cargo = $_POST["cargo"];
-    $telefone = $_POST["telefone"];
 
+    $cpfLimpo = limpaCPF_CNPJ($cpf);
 
-    mysqli_query($link, "insert into tb_usuario (nm_usuario, cd_rmUsuario, ds_emailUsuario, nr_cpf, FK_cd_acesso, nr_telefoneUsuario, ds_statusUsuario) values ('$nome', $rm, '$email', '$cpf', $cargo, '$telefone', 'Ativado')");
+    mysqli_query($link, "insert into tb_usuario (nm_usuario, cd_rmUsuario, ds_emailUsuario, nr_cpf, FK_cd_acesso, ds_statusUsuario, ds_senha) values ('$nome', $rm, '$email', '$cpfLimpo', $cargo,'Ativado', MD5('etec123'));");
 
     echo 'Registro Feito';
+
+
+    
+    function limpaCPF_CNPJ($valor){
+        $valor = preg_replace('/[^0-9]/', '', $valor);
+           return $valor;
+        }

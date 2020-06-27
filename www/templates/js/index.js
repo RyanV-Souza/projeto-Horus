@@ -1,12 +1,9 @@
 //Validar CPF
 
-$(document).on("blur", "#cadastrarCPFUsuario", function(){
+$(document).on("blur", ".cpfMask", function(){
   validarCPF($(this).val());
 });
 
-$(document).on("blur", "#cadastrarCPFAluno", function(){
-  validarCPF($(this).val());
-});
 
 function validarCPF(cpf) {	
 	cpf = cpf.replace(/[^\d]+/g,'');	
@@ -60,6 +57,7 @@ function validarCPF(cpf) {
 }
 
 
+
 $(document).on("mouseover", ".sidebar", function(){
     $(".fundo").show();
 
@@ -83,14 +81,9 @@ $(document).on("mouseover", ".sidebar", function(){
 
   });
 
-
-  $(document).on("click", "#btnLogin", function(){
-    $(location).attr("href", "menuUsuario.html");
-  })
   $(document).on("click", ".cadastrarUsuario", function(){
       $("#modalCadastroUsuario").modal('show');
   });
-
 
   $(document).on("click", ".cadastrarComponente", function(){
     $("#modalCadastroComponente").modal('show');
@@ -168,7 +161,7 @@ $(document).on("mouseover", ".sidebar", function(){
         url: "./templates/php/grupo/criarSession.php",
         data:parametros,
         success: function(data){
-            $(location).attr('href', 'grupoEstagio.html');
+            $(location).attr('href', 'grupoEstagio.php');
         },
         error: function(data){
           alert("Erro");
@@ -252,14 +245,14 @@ $(document).on("mouseover", ".sidebar", function(){
       })
   }
   $(document).on("click", ".btnCadastrarUsuario", function(){
-
+    
     var parametros = {
       nome:$('#cadastrarNmUsuario').val(),
       RM:$('#cadastrarRmUsuario').val(),
       email:$('#cadastrarEmailUsuario').val(),
       cpf:$("#cadastrarCPFUsuario").val(),
       cargo:$("#cadastrarCargoUsuario").val(),
-      telefone:$("#cadastrarTelefoneUsuario").val()
+ 
     }
 
 
@@ -268,7 +261,7 @@ $(document).on("mouseover", ".sidebar", function(){
       url: "./templates/php/usuario/cadastro.php",
       data:parametros,
       success: function(data){
-  
+
         document.location.reload(true);
       },
       error: function(request, status, erro){
@@ -329,7 +322,7 @@ $(document).on("mouseover", ".sidebar", function(){
   });
 
   $(document).on("click", ".btnCadastrarAluno", function(){
-    alert('oi');
+ 
     var parametros = {
       nome:$("#cadastrarNmAluno").val(),
       rm:$("#cadastrarRmAluno").val(),
@@ -388,7 +381,7 @@ $(document).on("mouseover", ".sidebar", function(){
         rm:$("#alterarRmUsuario").val(),
         email:$("#alterarEmailUsuario").val(),
         status:$("#alterarStatusUsuario").val(),
-        telefone:$("#alterarTelefoneUsuario").val(),
+
         cargo:$("#alterarCargoUsuario").val()
       }
 
@@ -492,6 +485,7 @@ $(document).on("click", ".btnAlterarComponente", function(){
       url: "./templates/php/local/populaTabelaLocal.php",
       dataType:"json",
       success: function(data){
+  
         var itemlista = "";
 
         $.each(data.campo, function(i, dados){
@@ -632,7 +626,7 @@ $(document).on("click", ".btnAlterarComponente", function(){
       url: "./templates/php/grupo/enviarGrupo.php",
       data: parametro,
       success: function(data){
-        $(location).attr("href", "menuAluno.html");
+        $(location).attr("href", "menuAluno.php");
       },
       error: function(data){
         alert("Erro");
@@ -701,7 +695,7 @@ $(document).on("click", ".btnAlterarComponente", function(){
               $("#alterarRmUsuario").val(dados.rm);
               $("#alterarEmailUsuario").val(dados.email);
               $("#alterarCPFUsuario").val(dados.cpf);
-              $("#alterarTelefoneUsuario").val(dados.telefone);
+
           });
 
           $("#modalAlterarUsuario").modal('show');
@@ -783,7 +777,7 @@ const buscarDadosComponente = (codigo) =>{
     url: "./templates/php/modulo/criarSession.php",
     data: parametros,
     success: function(data){
-      $(location).attr('href', 'modulo.html');
+      $(location).attr('href', 'modulo.php');
     },
     error: function(request, status, erro){
       alert("Problema" + status + " Descrição " + erro);
@@ -1006,4 +1000,70 @@ $(document).on("click", ".btnAlterarAluno", function(){
       alert("Erro");
     }
   });
+});
+
+//Perfil-----------------------
+
+const verificarLogin = () =>{
+  $.ajax({
+    type: "post",
+    url: "./templates/php/perfil/exibirPerfil.php",
+    dataType: "json",
+    success: function(data){
+      $.each(data.perfil, function(i, dados){
+        $("#nomePerfil").text(dados.nome);
+        $(".alterarEmailPerfil").val(dados.email);
+        $(".alterarRMPerfil").val(dados.rm);
+        $(".alterarCPFPerfil").val(dados.cpf);
+        $(".alterarSenhaPerfil").val(dados.senha);
+      });
+      $(".btnEditarPerfil").show();
+      $(".btnConfirmarEdicaoPerfil").hide();
+      $(".cancelarAlteracaoPerfil").hide();
+    },
+    error: function(data){
+      alert('Erro');
+    }
+  })
+};
+
+$(document).on("click",".btnEditarPerfil", function(){
+        $(".alterarEmailPerfil").prop("readonly", false);
+        $(".alterarCPFPerfil").prop("readonly", false);
+        $(".alterarSenhaPerfil").prop("readonly", false);
+        $(".btnConfirmarEdicaoPerfil").show();
+        $(".cancelarAlteracaoPerfil").show();
+        $(this).hide();
+});
+
+$(document).on("click", ".cancelarAlteracaoPerfil", function(){
+        $(".alterarEmailPerfil").prop("readonly", true);
+        $(".alterarCPFPerfil").prop("readonly", true);
+        $(".alterarSenhaPerfil").prop("readonly", true);
+        verificarLogin();
+});
+
+$(document).on("click", ".btnConfirmarEdicaoPerfil", function(){
+  var parametros = {
+        email:$(".alterarEmailPerfil").val(),
+        rm:$(".alterarRMPerfil").val(),
+        cpf:$(".alterarCPFPerfil").val(),
+        senha:$(".alterarSenhaPerfil").val()
+  }
+  alert(parametros);
+  $.ajax({
+    type: "post",
+    url: "./templates/php/perfil/alterarPerfil.php",
+    data: parametros,
+    success: function(data){
+      document.location.reload(true);
+    },
+    error: function(data){
+      alert("Erro");
+    }
+  });
+})
+
+$(document).on("focus", ".alterarSenhaPerfil", function(){
+  $(this).val('');
 });

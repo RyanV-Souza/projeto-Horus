@@ -1,3 +1,11 @@
+<?php
+  session_start();
+  if(!$_SESSION['usuarioLogin']){
+    header("Location: /projeto-horus/www/index.php");
+    exit();
+  }
+?>
+
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -100,25 +108,25 @@
       </li>
 
       <li class="side-item">
-        <a href="menuUsuario.html" class="side-link">
+        <a href="menuUsuario.php" class="side-link">
 
         <img  src='galeria/navbar/ICON USER.png' class="icon" >   <span class="link-text" >Usuario</span>
         </a>
       </li>
 
       <li class="side-item">
-        <a href="menuModulo.html" class="side-link">
+        <a href="menuModulo.php" class="side-link">
         <img  src='galeria/navbar/grup.png' class="icon" > <span class="link-text" >Módulos</span>
         </a>
       </li>
       <li class="side-item">
-        <a href="menuComponente.html" class="side-link">
+        <a href="menuComponente.php" class="side-link">
         <img  src='galeria/navbar/materia.png' class="icon" > <span class="link-text" >Componentes</span>
         </a>
       </li>
 
       <li class="side-item">
-        <a href="menuLocal.html" class="side-link">
+        <a href="menuLocal.php" class="side-link">
         <img  src='galeria/navbar/local.png' class="icon" > <span class="link-text" >Locais</span>
         </a>
       </li>
@@ -127,7 +135,7 @@
 
 
       <li class="side-item" id="themeButton">
-        <a href="index.html" class="side-link">
+        <a href="./templates/php/login/logout.php" class="side-link">
           <img  src='galeria/navbar/sair.png' class="icon" > <span class="link-text" >Sair</span>
         </a>
       </li>
@@ -163,35 +171,37 @@
                   <div class="row">
                       <div class="col-md-12">
                           <label for="">E-Mail</label>
-                          <input type="text" class="alterarEmailUsuario form-control"   readonly>
+                          <input type="text" class="alterarEmailPerfil form-control"   readonly="true">
                       </div>
                   </div>
                   <br>
                   <div class="row">
-                      <div class="col-md-12">
-                          <label for="">Telefone</label>
-                          <input type="tel" class="alterarTelefoneUsuario form-control" readonly>
-                      </div>
-                  </div>
+                    <div class="col-md-12">
+                        <label for="">RM</label>
+                        <input type="tel" class="alterarRMPerfil form-control" readonly="true">
+                    </div>
+                </div>
                   <br>
                   <div class="row">
                       <div class="col-md-12">
                           <label for="">CPF</label>
-                          <input type="text" class=" form-control alterarCPFUsuario" readonly>
+                          <input type="text" class=" form-control alterarCPFPerfil cpfMask" readonly="true">
                       </div>
                   </div>
                   <br>
                   <div class="row">
                       <div class="col-md-12">
                           <label for="">Senha</label>
-                          <input type="password" class=" form-control alterarSenhaUsuario" readonly>
+                          <input type="password" class=" form-control alterarSenhaPerfil" readonly="true">
                       </div>
                   </div>
 
               </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btnEstilo btnEditarUsuario">Editar</button>
+            <button type="button" class="btnEstilo btnEditarPerfil">Editar</button>
+            <button type="button" class="btnEstilo btnConfirmarEdicaoPerfil">Confirmar Alteração</button>
+            <button type="button" style="background: #FF6565" class="btnEstilo cancelarAlteracaoPerfil">Cancelar</button>
           </div>
         </div>
       </div>
@@ -234,7 +244,7 @@
                   <div class="row">
                       <div class="col-md-12">
                           <label for="">CPF</label>
-                          <input type="text" id="cadastrarCPFUsuario" class="cpfMask form-control" placeholder="Ex: 000.000.000-00">
+                          <input type="text" id="cadastrarCPFUsuario" class="form-control cpfMask" placeholder="Ex: 000.000.000-00">
                       </div>
                   </div>
 
@@ -250,12 +260,6 @@
                       </div>
                   </div>
 
-                  <div class="row">
-                      <div class="col-md-12">
-                          <label for="">Telefone</label>
-                          <input type="tel" id="cadastrarTelefoneUsuario" class=" form-control" placeholder="Ex: (00) 0000-0000">
-                      </div>
-                  </div>
 
 
               </div>
@@ -321,14 +325,6 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <label for="">Telefone</label>
-                        <input type="tel" id="alterarTelefoneUsuario" class=" form-control" placeholder="Ex: (00) 0000-0000">
-                    </div>
-                </div>
-
-
             </div>
         </div>
         <div class="modal-footer">
@@ -339,18 +335,22 @@
   </div>
 
 
-<script src="./templates/js/jquery-3.4.1.min.js"></script>
-<script src="./templates/js/jquery-mask.js"></script>
+  <script src="./templates/js/jquery-3.4.1.min.js"></script>
+  <script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js"></script>
 <script src="./templates/js/bootstrap.min.js"></script>
 <script src="./templates/js/index.js"></script>
 
 <script>
   $(document).ready(function(){
-
+    
+  verificarLogin();
   listarTodosUsuario();
-  $(".cpfMask").mask("999.999.999-99");
+  $('.cpfMask').mask('999.999.999-99');
+  
   
 
+  
+  
 });
 
 

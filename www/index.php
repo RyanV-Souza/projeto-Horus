@@ -10,17 +10,19 @@
   </head>
   <body>
       <div class="container">
-          <div class="box">
+        <form action="./templates/php/login/login.php" method="POST">
+          <div class="box" >
             <h1>Bem-Vindo (a)</h1>
             <br>
-            <input class="input-form" type="text" name="" value="" placeholder="Registro da Matricula" id="registro">
-            <input class="input-form" type="password" name="" value="" placeholder="Senha" id="senha">
+            <input class="input-form" type="text" name="usuario" value="" placeholder="Registro da Matricula" id="registro">
+            <input class="input-form" type="password" name="senha" value="" placeholder="Senha" id="senha">
             <br>
-            <p>Esqueceu a senha? <a>Clique aqui</a></p>
+            <p >Esqueceu a senha? <a>Clique aqui</a></p>
             <br>
-            <button type="button" class="btn btn-lg offset-m2" name="button" id="btnLogin">ENTRAR</button>
+            <button type="submit" class="btn btn-lg offset-m2" name="button" id="btnLogin">ENTRAR</button>
             <br><br><br>
           </div>
+        </form>
       </div>
 
 

@@ -16,7 +16,7 @@
             'nome' => $linha['nm_usuario'],
             'rm' => $linha['cd_rmUsuario'],
             'email' =>$linha['ds_emailUsuario'],
-            'telefone' =>$linha['nr_telefoneUsuario']
+
         );
 
         $i++;
