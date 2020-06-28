@@ -504,8 +504,7 @@ input:checked + .slider:before {
   color: whitesmoke;
   cursor: pointer;
   margin-left: 1vh;
-  margin-top: 1vh;
-  padding-top: 0;
+  
 }
 
 .quadroModulo img{
@@ -513,11 +512,16 @@ input:checked + .slider:before {
 }
 
 .numeroModulo{
-  padding-top: 6vh;
+  padding-top: 1.3vh;
   display: block;
   font-weight: bold;
 }
 .siglaModulo{
+  display: block;
+}
+
+.anoModulo{
+  font-weight: bold;
   display: block;
 }
 

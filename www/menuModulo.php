@@ -119,8 +119,12 @@
               <div class="form-group">
                   <div class="row">
                       <div class="col-md-12">
-                          <label for="">Data Inicial</label>
-                          <input type="date" class="form-control cadastrarDataInicialModulo" placeholder="Ex: 01/01/2020">
+                          <label for="">Semestre</label>
+                          <select value="" class="form-control cadastrarSemestreModulo">
+                              <option value="1">1°Semestre</option>
+                              <option value="2"> 2°Semestre</option>
+                          </select>
+                          
                       </div>
                   </div>
 
@@ -128,8 +132,8 @@
 
                   <div class="row">
                       <div class="col-md-12">
-                          <label for="">Data Final</label>
-                          <input type="date" class="cadastrarDataFinalModulo form-control" placeholder="Ex: 09/09/2020">
+                          <label for="">Ano</label>
+                          <input type="number" class="cadastrarAnoModulo form-control" placeholder="Ex: 2020">
                       </div>
                   </div>
 

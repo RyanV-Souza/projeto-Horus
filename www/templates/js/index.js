@@ -346,8 +346,8 @@ $(document).on("mouseover", ".sidebar", function(){
 
     var parametros = {
       nome:$('.cadastrarNmComponente').val(),
-      dataInicial:$('.cadastrarDataInicialModulo').val(),
-      dataFinal:$('.cadastrarDataFinalModulo').val(),
+      ano:$('.cadastrarAnoModulo').val(),
+      semestre:$('.cadastrarSemestreModulo').val(),
       sigla:$('.cadastrarSiglaModulo').val(),
       numeroModulo:$(".cadastrarNumeroModulo").val()
 
@@ -550,13 +550,15 @@ $(document).on("click", ".btnAlterarComponente", function(){
                   itemlista += ` <div class="quadroModulo moduloAtivo" style="background: #58D6AB" onClick="enviarModulo(${dados.codigo})">
                                     <span class="numeroModulo">${dados.numeroModulo}°Módulo</span>
                                     <span class="siglaModulo">${dados.sigla}</span>
-                                    <span class="anoModulo">2020</span>
+                                    <span class="anoModulo">${dados.ano}</span>
+                                    <span class="semestreModulo">${dados.semestre}° Semestre</span>
                                   </div> `
           } else if(dados.status =='Desativado'){
             itemlista += ` <div class="quadroModulo moduloAtivo" style="background: #FF6565" onClick="enviarModulo(${dados.codigo})">
                                     <span class="numeroModulo">${dados.numeroModulo}°Módulo</span>
                                     <span class="siglaModulo">${dados.sigla}</span>
-                                    <span class="anoModulo">2020</span>
+                                    <span class="anoModulo">${dados.ano}</span>
+                                    <span class="semestreModulo">${dados.semestre}° Semestre</span>
                                   </div> `
           }
 
@@ -1064,6 +1066,3 @@ $(document).on("click", ".btnConfirmarEdicaoPerfil", function(){
   });
 })
 
-$(document).on("focus", ".alterarSenhaPerfil", function(){
-  $(this).val('');
-});

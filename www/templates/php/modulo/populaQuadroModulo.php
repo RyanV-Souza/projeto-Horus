@@ -16,7 +16,9 @@
             'sigla' => $linha['sg_modulo'],
             'numeroModulo' => $linha['ds_numeroModulo'],
             'codigo' => $linha['cd_modulo'],
-            'status' =>$linha['ds_statusModulo']
+            'status' =>$linha['ds_statusModulo'],
+            'semestre' => $linha['ds_semestre'],
+            'ano' => $linha['dt_ano']
             
         );
 
