@@ -2,7 +2,7 @@
     session_start();
     $link = mysqli_connect('localhost', 'root', 'usbw', 'horus');
 
-    $codigo = $_POST['codigoModulo'];
+    $codigo = $_POST['codigoComponente'];
 
     $query = "select tb_campoestagio.nm_campoEstagio, tb_componentecampoestagio.cd_componentecampoestagio from tb_componentecampoestagio, tb_campoestagio where tb_componentecampoestagio.FK_cd_componente = $codigo and tb_componentecampoestagio.FK_cd_campoEstagio = tb_campoestagio.cd_campoEstagio";
 

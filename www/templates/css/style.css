@@ -512,7 +512,7 @@ input:checked + .slider:before {
 }
 
 .numeroModulo{
-  padding-top: 1.3vh;
+  padding-top: 2vh;
   display: block;
   font-weight: bold;
 }

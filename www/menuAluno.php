@@ -32,7 +32,6 @@
               <div class="col-md-9">
                  <div class="form-group">
                     <select name="" id="" class="select opcaoAluno">
-                        <option value="">Cargo</option>
                         <option value="">Nome</option>
                         <option value="">RM</option>
                     </select>

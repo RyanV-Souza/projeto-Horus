@@ -639,8 +639,10 @@ $(document).on("click", ".btnAlterarComponente", function(){
   $(document).on("change", '.cadastrarComponenteDisponivel', function(){
 
     var parametros = {
-      'codigo':$(this).val()
+      'codigoComponente':$(this).val()
     }
+    
+    
     $.ajax({
         type: "post",
         url: "./templates/php/modulo/inserirCampoEstagio.php",
