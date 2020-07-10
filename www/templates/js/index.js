@@ -801,6 +801,7 @@ const buscarDadosComponente = (codigo) =>{
         $.each(data.modulo, function(i, dados){
           $(".cadastrarProfessor").attr('onClick', `cadastrarProfessor(${dados.codigo})`);
           $(".cadastrarGrupoEstagio").attr("onClick", `exibirGrupos(${dados.codigo})`);
+          $(".cadastrarCronograma").attr("onClick", `exibirCronograma(${dados.codigo})`);
           $('h4').text(`${dados.numero} MÓDULO`);
           exibirCorpoDocente(dados.codigo);
           exibirAlunos(dados.codigo);
@@ -810,6 +811,23 @@ const buscarDadosComponente = (codigo) =>{
        alert("Problema " + status + " Descrição " + erro);
      }
    })
+ }
+
+ const exibirCronograma = (codigoModulo) =>{
+  var parametros = {
+    codigoModulo:codigoModulo
+  }
+  $.ajax({
+    type:"post",
+    url: "./templates/php/modulo/criarSessionCronograma.php",
+    data: parametros,
+    success: function(data){
+      $(location).attr("href", "menuCronograma.php");
+    },
+    error: function(request, status, erro){
+      alert("Problema " + status + " Descrição " + erro);
+    }
+  })
  }
 
  const exibirAlunos = (codigo) =>{
