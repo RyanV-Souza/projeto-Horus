@@ -33,8 +33,8 @@ document.addEventListener('DOMContentLoaded', function () {
         select: function(info){
             //alert('Inicio ' + info.start.toLocaleString()   );
             $("#modalCadastrarDia").modal('show');
-            $("#cadastrarInicioEvento").val(info.start.toLocaleString());
-            $("#cadastrarFimEvento").val(info.end.toLocaleString());
+            $("#cadastrarInicioEvento").val(formatoData(info.start));
+            $("#cadastrarFimEvento").val(formatoData(info.end));
             exibirDadosGrupoEventoCadastro(0);
             exibirDadosComponenteEventoCadastro(0);
         }
@@ -43,38 +43,23 @@ document.addEventListener('DOMContentLoaded', function () {
     calendar.render();
 });
 
-//Mascara para o campo data e hora
-function DataHora(evento, objeto) {
-    var keypress = (window.event) ? event.keyCode : evento.which;
-    campo = eval(objeto);
-    if (campo.value == '00/00/0000 00:00:00') {
-        campo.value = "";
-    }
+const formatoData = (data)  =>{
+    moment.locale('pt'); // setar o locale para "pt" (Português)
+    moment.updateLocale('pt', {
+        months : [
+            "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho",
+            "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+        ]
+    });
+// por padrão, o nome do mês é com letra minúscula
+    var dataFormatada = moment(data).format('DD-MM-YYYY HH:mm:ss') // 10 de dezembro/2018
 
-    caracteres = '0123456789';
-    separacao1 = '/';
-    separacao2 = ' ';
-    separacao3 = ':';
-    conjunto1 = 2;
-    conjunto2 = 5;
-    conjunto3 = 10;
-    conjunto4 = 13;
-    conjunto5 = 16;
-    if ((caracteres.search(String.fromCharCode(keypress)) != -1) && campo.value.length < (19)) {
-        if (campo.value.length == conjunto1)
-            campo.value = campo.value + separacao1;
-        else if (campo.value.length == conjunto2)
-            campo.value = campo.value + separacao1;
-        else if (campo.value.length == conjunto3)
-            campo.value = campo.value + separacao2;
-        else if (campo.value.length == conjunto4)
-            campo.value = campo.value + separacao3;
-        else if (campo.value.length == conjunto5)
-            campo.value = campo.value + separacao3;
-    } else {
-        event.returnValue = false;
-    }
+    // mudar os nomes dos meses para o locale "pt"
+    
+
+    return dataFormatada;
 }
+
 
 const exibirEvento = (codigo, dataInicio, dataFinal) =>{
     var parametros = {
@@ -427,28 +412,84 @@ const atualizarEvento = (codigoCorreto) =>{
 }
 
 const cadastrarEvento = (codigoCorreto) =>{
-    var parametros = {
-        dataInicio:$("#cadastrarInicioEvento").val(),
-        dataFim:$("#cadastrarFimEvento").val(),
-        codigoCorreto:codigoCorreto,
-        codigoGrupo:$("#cadastrarGrupoEvento").val(),
-        corEvento:$("#cadastrarCorEvento").val(),
+    if(confirm('Você deseja repetir esse registro em outras semanas?')){
+        var numeroSemanas = prompt("Digite o número de semanas: ");
+        var arrayDataInicio = gerarDatasInicio(numeroSemanas);
+        var arrayDataFim = gerarDatasFim(numeroSemanas);
+
+        var parametros = {
+            dataInicio:arrayDataInicio,
+            dataFim:arrayDataFim,
+            codigoCorreto:codigoCorreto,
+            codigoGrupo:$("#cadastrarGrupoEvento").val(),
+            corEvento:$("#cadastrarCorEvento").val(),
+        }
+
+        $.ajax({
+            
+            type:"post",
+            url: "./templates/php/cronograma/cadastrarMultiplosEventos.php",
+            data: parametros,
+            success: function(data){
+                 document.location.reload(true);
+            },
+            error: function(data){
+                alert("Erro");
+            }
+        })
+        
+    } else {
+
+        var parametros = {
+            dataInicio:$("#cadastrarInicioEvento").val(),
+            dataFim:$("#cadastrarFimEvento").val(),
+            codigoCorreto:codigoCorreto,
+            codigoGrupo:$("#cadastrarGrupoEvento").val(),
+            corEvento:$("#cadastrarCorEvento").val(),
+        }
+
+        $.ajax({
+            
+            type:"post",
+            url: "./templates/php/cronograma/cadastrarEvento.php",
+            data: parametros,
+            success: function(data){
+                 document.location.reload(true);
+            },
+            error: function(data){
+                alert("Erro");
+            }
+        })
+    }
+    
+}
+
+const gerarDatasInicio = (numero) =>{
+    var arrayDataInicio = [];
+    var dataInicio = $("#cadastrarInicioEvento").val();
+    arrayDataInicio.push(dataInicio);
+    for(var x = 0; x < numero; x++){
+        var novaData = moment(dataInicio, "DD-MM-YYYY HH:ss:ss").add(7, 'days');
+        var dataFormatada = moment(novaData).format('DD-MM-YYYY HH:ss:ss');
+        arrayDataInicio.push(dataFormatada);
+        dataInicio = novaData;      
     }
 
-    
-   $.ajax({
-       type:"post",
-       url: "./templates/php/cronograma/cadastrarEvento.php",
-       data: parametros,
-       success: function(data){
-            document.location.reload(true);
-       },
-       error: function(data){
-           alert("Erro");
-       }
-   })
+    return arrayDataInicio;
+}
 
-    
+const gerarDatasFim = (numero) =>{
+    var arrayDataFim = [];
+    var dataFim = $("#cadastrarFimEvento").val();
+    arrayDataFim.push(dataFim);
+    for(var x = 0; x < numero; x++){
+        var novaData = moment(dataFim, "DD-MM-YYYY HH:ss:ss").add(7, 'days');
+        var dataFormatada = moment(novaData).format('DD-MM-YYYY HH:ss:ss');
+        arrayDataFim.push(dataFormatada);
+        dataFim = novaData;      
+    }
+
+    return arrayDataFim;
 }
 
 $(document).on("click", ".btnExcluirEvento", function(){

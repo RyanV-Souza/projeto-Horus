@@ -231,17 +231,19 @@
                   <div class="row">
                       <div class="col-md-12">
                           <label for="">Início do Evento</label>
-                          <input value="" type="text" id="cadastrarInicioEvento" class="form-control"  onkeypress="DataHora(event, this)">
+                          <input value="" type="text" id="cadastrarInicioEvento" class="form-control"  >
                       </div>
                   </div>
 
                   <div class="row">
                       <div class="col-md-12">
                           <label for="">Fim do Evento</label>
-                          <input value="" type="text" id="cadastrarFimEvento" class="form-control" onkeypress="DataHora(event, this)">
+                          <input value="" type="text" id="cadastrarFimEvento" class="form-control" >
                       </div>
                   </div>
-              </div>
+                </div>
+                
+                
           </div>
           <div class="modal-footer" >
             <button type="button" class="btnEstilo btnCadastrarEvento">CADASTRAR EVENTO</button>
@@ -301,14 +303,14 @@
                   <div class="row">
                       <div class="col-md-12">
                           <label for="">Início do Evento</label>
-                          <input value="" type="text" id="alterarInicioEvento" class="form-control" disabled="true" onkeypress="DataHora(event, this)">
+                          <input value="" type="text" id="alterarInicioEvento" class="form-control" disabled="true" >
                       </div>
                   </div>
 
                   <div class="row">
                       <div class="col-md-12">
                           <label for="">Fim do Evento</label>
-                          <input value="" type="text" id="alterarFimEvento" class="form-control" disabled="true" onkeypress="DataHora(event, this)">
+                          <input value="" type="text" id="alterarFimEvento" class="form-control" disabled="true" >
                       </div>
                   </div>
               </div>
@@ -361,6 +363,7 @@
 
 
 <script src="./templates/js/jquery-3.4.1.min.js"></script>
+<script src='./templates/js/moment-with-locales.min.js'></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 <script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js"></script>
@@ -369,17 +372,18 @@
 <script src='./templates/js/interaction/main.min.js'></script>
 <script src='./templates/js/daygrid/main.min.js'></script>
 <script src='./templates/js/core/locales/pt-br.js'></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
+
 <script src="./templates/js/index.js"></script>
 <script src="./templates/js/cronograma.js"></script>
 
 <script>
   $(document).ready(function(){
-    
+    moment.locale('pt-BR');
     verificarLogin();
     $(".cancelarAlteracaoEvento").hide();
     $(".confirmarAlteracaoEvento").hide();
     $(".cpfMask").mask("999.999.999-99");
+    moment.locale('pt');
     
   
 
