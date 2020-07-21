@@ -48,8 +48,16 @@ body::-webkit-scrollbar-thumb {
   background: #6649b8;
 }
 
-/*Quadro*/
 
+/*Quadro*/
+.img-responsive{
+  width: 4%;
+  display: inline-flex;
+  position: static;
+  margin-top: -1vh;
+  margin-left: 1.5vh;
+  margin-right: 1vh;
+}
 .quadro{
   position: fixed;
   padding: 0;
@@ -466,7 +474,7 @@ border-radius: 15px;
 }
 
 .numeroModulo{
-  padding-top: 2vh;
+  padding-top: 1.2vh;
   display: block;
   font-weight: bold;
 }

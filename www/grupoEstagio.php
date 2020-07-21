@@ -25,7 +25,7 @@
 <body >
   <div class="quadro">
       <div class="topo">
-          <h4>GRUPO DE ESTÁGIO</h4>
+          <h4> <img  src='galeria/icon/logolamp.png' class="img-responsive"> GRUPO DE ESTÁGIO <img  src='galeria/icon/logolamp.png' class="img-responsive"> </h4>
       </div>
       <div class="centro">  
                                 

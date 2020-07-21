@@ -23,7 +23,7 @@
 <body >
   <div class="quadro">
       <div class="topo">
-          <h4>CAMPO DE ESTÁGIO</h4>
+          <h4><img  src='galeria/icon/logolamp.png' class="img-responsive">CAMPO DE ESTÁGIO<img  src='galeria/icon/logolamp.png' class="img-responsive"></h4>
       </div>
       <div class="centro">
           <div class="row">

@@ -24,7 +24,7 @@
 <body >
   <div class="quadro">
       <div class="topo">
-          <h4>MÓDULO</h4>
+          <h4><img  src='galeria/icon/logolamp.png' class="img-responsive">MÓDULO<img  src='galeria/icon/logolamp.png' class="img-responsive"></h4>
       </div>
       <div class="centro">  
                                 

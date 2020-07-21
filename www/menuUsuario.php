@@ -23,7 +23,7 @@
 <body >
   <div class="quadro">
       <div class="topo">
-          <h4>Usuários</h4>
+       <h4><img  src='galeria/icon/logolamp.png' class="img-responsive"> USUÁRIO <img src='galeria/icon/logolamp.png' class="img-responsive"></h4>
       </div>
       <div class="centro">
           <div class="row">

@@ -17,33 +17,32 @@
   <link href='templates/css/daygrid/main.min.css' rel='stylesheet'/>
   <link rel="stylesheet" href="templates/css/cronograma.css" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap"rel="stylesheet"/>
-  
+
 
   <style>
 
-        
 
-        
+
+
   </style>
 
 </head>
 
-<body >
-          
+<body>
+
       <div class="quadro">
-          
+
           <div class="centro">
 
             <div id='calendar' ></div>
           </div>
           <div class="areaBotoes">
             <button class="btnEstilo exibirPDF" style="text-align: center; width: 30%; margin-top: 1%; background: white; color: rgb(88, 214, 171)">Exibir Prévia do PDF</button>
+            <button class="btnEstilo" onclick="location.href = document.referrer;" style="text-align: center; width: 30%; margin-top: 1%; background: white; color: rgb(88, 214, 171)">Voltar</button>
           </div>
-          
+
       </div>
 
-
- 
 
 
   <div class="fundo"></div>
@@ -205,7 +204,7 @@
                           <select value="" id="cadastrarComponenteEvento" class="form-control" ></select>
                       </div>
                   </div>
-                  
+
                   <div class="row">
                       <div class="col-md-12">
                           <label for="">Campo de Estágio</label>
@@ -242,8 +241,8 @@
                       </div>
                   </div>
                 </div>
-                
-                
+
+
           </div>
           <div class="modal-footer" >
             <button type="button" class="btnEstilo btnCadastrarEvento">CADASTRAR EVENTO</button>
@@ -284,7 +283,7 @@
                           <select value="" id="alterarComponenteEvento" class="form-control" disabled="true"></select>
                       </div>
                   </div>
-                  
+
                   <div class="row">
                       <div class="col-md-12">
                           <label for="">Campo de Estágio</label>
@@ -384,8 +383,8 @@
     $(".confirmarAlteracaoEvento").hide();
     $(".cpfMask").mask("999.999.999-99");
     moment.locale('pt');
-    
-  
+
+
 
 });
 

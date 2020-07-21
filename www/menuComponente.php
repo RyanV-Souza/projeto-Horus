@@ -23,7 +23,7 @@
 <body >
   <div class="quadro">
       <div class="topo">
-          <h4>COMPONENTE CURRICULAR</h4>
+          <h4><img  src='galeria/icon/logolamp.png' class="img-responsive">COMPONENTE CURRICULAR<img  src='galeria/icon/logolamp.png' class="img-responsive"></h4>
       </div>
       <div class="centro">
           <div class="row">

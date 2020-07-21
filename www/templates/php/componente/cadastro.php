@@ -1,5 +1,4 @@
 <?php
-
     $link = mysqli_connect('localhost', 'root', 'usbw', 'horus');
 
     $nome = $_POST["nome"];
